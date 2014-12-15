@@ -14,18 +14,19 @@ SkewCalc( RS, Exposure , MaxExposure=max(Exposure), Samples=1000 , MethodFit="ET
 \item{Exposure}{A vector of exposure times to risk of RS. Must be integer-valued.}
 \item{MaxExposure}{Upper limit of exposure time. This value allows the model to account for an inflated number of individuals at completed reproduction.}
 \item{Samples}{Number of samples from the posterior distribution. Defaults to 1000. }
-\item{MethodFit}{If \code{TRUE}, attempts to compute the Hessian}
-\item{debug}{If \code{TRUE}, prints various internal steps to help with debugging}
-\item{...}{Additional arguments to pass to \code{optim}}
+\item{MethodFit}{Defines the Bayesian model to be used in estimating the population-level joint distribtution of RS and Exposure time. Options are: "ETNBShiftingShape" (Default), "ETNBShiftingShapeScale", "ETZINBShiftingShape", "ETZINBShiftingShapeScale", "ETHNBShiftingShape","ETHNBShiftingShapeScale". See Details.}
+\item{MethodCI}{Method for calculating confidences intervals. Options are: "HPDI" (Default) or "PCI". See Details.}
+\item{P}{Percentile of confidence interval. Defaults to 0.95.}
+\item{Priors}{Priors for the Bayesian model. Defaults depend on the model. See Details.}
+\item{Updates}{If "TRUE" prints progress reports.}
+\item{PlotResults}{If "TRUE" plots posterior distributions. See Details.}
 }
 \details{
-This command provides a convenient interface for finding maximum a posteriori estimates for models defined by a formula or by a list of formulas. This procedure is equivalent to penalized maximum likelihood estimation, and therefore can be used to define many common regularization procedures.
-\code{flist} should be a either a single formula that defines the likelihood function or rather a list of formulas that define the likelihood and priors for parameters. See examples below.
-Likelihood formulas take the form \code{y ~ dfoo(bar)}, where \code{y} is the outcome variable, \code{dfoo} is a density function such as \code{dnorm}, and \code{bar} is a parameter of the density.
-Prior formulas take the same form, but the outcome should be a parameter name. Identical priors can be defined for multiple parameters by using \code{c(par1,par2,...)} on the left hand side of the formula. See example below.
-Linear models can be specified as formulas of the form \code{mu <- a + b*x} for a direct link. To use a link function, use the form \code{link(mu) <- a + b*x} or \code{mu <- invlink(a + b*x)}. The names "link" and "invlink" must be recognized by \code{map}. It currently recognizes \code{log}/\code{exp} and \code{logit}/\code{logistic}. Any other link function can be coded directly into the likelihood formula. For example \code{y ~ dfoo(invlink(mu))}.
-The \code{start} list is optional. For each parameter with a defined prior, an initial value will be sampled from the prior. Explicit named initial values can also be provided in this list.
-Methods are defined for \code{coef}, \code{summary}, \code{logLik}, \code{vcov}, \code{nobs}, \code{deviance}, \code{link}, \link{DIC}, and \code{show}.
+This command provides a convenient interface for estimating the population-level joint distribtution of RS and Exposure time, using one of a suite of theoretically derived Bayesian models. Posterior estimates of M and Mc are derived from the population-level joint distribtution.
+The symbols for \code{MethodFit} stand for "E(xposure) T(runcated) N(egative) B(inomial)", with options for "Z(ero) I(nflated)" and "H(urdle)". "ShiftingShape" implies that the Shape parameter of the Gamma distribution underlying Gamma-Poisson (aka. Negative Binomial) shifts as a function of Exposure time. "ShiftingShapeScale" implies that both the Shape and Scale parameter of the Gamma distribution shifts as a function of Exposure time. 
+The symbols for \code{MethodCI} stand for H(ighest) P(osteior) D(ensity) I(nterval) or Central P(osteior) C(redibility) I(nterval).
+Custom priors (Gaussian on unconstrained space) can be specified with a list; however, this is not recommended for most users.
+If \code{PlotResults}="TRUE", plots of the sample and population-level joint distribution, and density plots of the sample and population-level RS and Exposure variables, will be returned with the estimates of M and Mc. These plots should appear similar. Divergence between the sample and poulation estimates might be indicative that a better model is needed.
 }
 \value{
 Returns an object of class \code{map} with the following slots.
