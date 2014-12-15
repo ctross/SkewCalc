@@ -87,7 +87,7 @@ scrapRS[n]<- rnbinom( 1,size=(exp(Theta2+ logistic(Theta3)*log(1+scrapExposure[n
 
  
 ################################################################################ Example with Real Data
- data(Kipsigis)
+ \dontrun{data(Kipsigis)
  d<-Kipsigis
  RS<-round(d$soff,0)
  Exposure<-d$age
@@ -95,7 +95,7 @@ scrapRS[n]<- rnbinom( 1,size=(exp(Theta2+ logistic(Theta3)*log(1+scrapExposure[n
  Exposure<-ifelse(Exposure>45,45,Exposure)
  MaxExposure<-max(Exposure)
 
- RES<-SkewCalc(RS,Exposure,Samples=100, MethodFit="ETNBShiftingShape")
+ RES<-SkewCalc(RS,Exposure,Samples=100, MethodFit="ETNBShiftingShape")}
     
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
