@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Calculate Posterior Confidence Intervals for Estimates of M and Mc with Bayesian Negative Binomial Models}
 \description{
-SkewCals allows users to calculate the posterior confidence intervals for estimates of M and Mc with various exposure time truncated Bayesian negative binomial models.
+SkewCalc allows users to calculate the posterior confidence intervals for estimates of M and Mc with various exposure time truncated Bayesian negative binomial models.
 }
 \usage{
 SkewCalc( RS, Exposure , MaxExposure=max(Exposure), Samples=1000 , MethodFit="ETNBShiftingShape" , MethodCI="HPDI", P=0.95, Prior="Default",Updates="TRUE", PlotResults="TRUE")
