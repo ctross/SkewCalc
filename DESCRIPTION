@@ -6,7 +6,7 @@ Author: Cody Ross and Paul Hooper
 Maintainer:  Cody Ross <ctross@ucdavis.edu>
 Depends: MASS
 Suggests: MASS
-Description: kewCals allows users to calculate the posterior confidence intervals for estimates of M and Mc with various exposure time truncated Bayesian negative binomial models.
+Description: SkewCalc allows users to calculate the posterior confidence intervals for estimates of M and Mc with various exposure time truncated Bayesian negative binomial models.
 License: GPL 
 URL: https://github.com/Ctross/SkewCalc
 BugReports: https://github.com/Ctross/SkewCalc
