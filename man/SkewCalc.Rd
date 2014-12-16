@@ -45,8 +45,8 @@ Returns a list with following items:
 N<-100
 MaxExposure<-45
 
-Kappa1 <- 3
-Kappa2 <- -2
+Kappa1 <- 5
+Kappa2 <- .5
 Psi1 <- -1
 Theta1 <- 5
 Theta2 <- 1.5
