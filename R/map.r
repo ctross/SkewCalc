@@ -1,7 +1,7 @@
 #This code is lifted directly from Richard McElreath, Rethninking https://github.com/rmcelreath/rethinking
 # Create Function Here, Create Class Below
 map<-function (flist, data, start, method = "Nelder-Mead", hessian = TRUE,
-    debug = FALSE, verbose = FALSE, ...)
+    debug = FALSE, verbose = FALSE, control=list(maxit=1000))
 {
 ##################### Required Dependencies
     library(MASS)
