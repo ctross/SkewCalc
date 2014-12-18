@@ -1,6 +1,6 @@
 #This code is lifted directly from Richard McElreath, Rethninking https://github.com/rmcelreath/rethinking
 # Create Function Here, Create Class Below
-map<-function (flist, data, start, method = "BFGS", hessian = TRUE,
+map<-function (flist, data, start, method = "Nelder-Mead", hessian = TRUE,
     debug = FALSE, verbose = FALSE, ...)
 {
 ##################### Required Dependencies
