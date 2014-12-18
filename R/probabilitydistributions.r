@@ -75,7 +75,7 @@ for (n in 1:N) {
 Lp<-increment_log_prob(dbinom(ifelse(RS[n]==0,1,0), size=1, prob=P2[n], log = TRUE));
 
 if (RS[n] > 0){
-Lp<- increment_log_prob(dnbinom(RS[n], size=(Mu2[n]/(B2[n])), prob=(1 / ( 1 + B2[n] )), log = TRUE)  -(1 - log(pnbinom(1, size=(Mu2[n]/(B2[n])), prob=(1 / ( 1 + B2[n] )), log = FALSE)))  )  ;
+Lp<- increment_log_prob(dnbinom(RS[n], size=(Mu2[n]/(B2[n])), prob=(1 / ( 1 + B2[n] )), log = TRUE)  -( log(1-pnbinom(1, size=(Mu2[n]/(B2[n])), prob=(1 / ( 1 + B2[n] )), log = FALSE)))  )  ;
 }
 
 }
