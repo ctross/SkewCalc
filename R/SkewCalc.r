@@ -437,12 +437,12 @@ else(print('Error: Please Select a Valid Method for MethodFit'))  }}} } }
 
  
  layout(matrix(c(1,2), 1, 2, byrow = TRUE), widths =c(2,2) , heights=c(1,1))
- plot(density(plotRS,bw=.4), main="RS Densities")
-lines(density(RS,bw=.4), col="red")
+ plot(density(plotRS,bw=2), main="RS Densities")
+lines(density(RS,bw=2), col="red")
 legend("top", inset=0, title="Distribution",
    c("Sample","Posterior"), fill=c("red","black"), horiz=FALSE)
-plot(density(plotExposure,bw=.4), main="Exposure Densities")
-lines(density(Exposure,bw=.4), col="red")
+plot(density(plotExposure,bw=2), main="Exposure Densities")
+lines(density(Exposure,bw=2), col="red")
 legend("top", inset=0, title="Distribution",
    c("Sample","Posterior"), fill=c("red","black"), horiz=FALSE)
    
