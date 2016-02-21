@@ -94,6 +94,9 @@ SkewGammaHyperParams[1,2]<-fitdistr(MMC[,1],"gamma")$estimate[2]
 SkewGammaHyperParams[2,1]<-fitdistr(MMC[,2],"gamma")$estimate[1]
 SkewGammaHyperParams[2,2]<-fitdistr(MMC[,2],"gamma")$estimate[2]
 
+ colnames(SkewGammaHyperParams)<-c("Shape","Scale")
+ rownames(SkewGammaHyperParams)<-c("M","Mc")
+
  SkewFit<-matrix(NA,nrow=4,ncol=3)
  SkewFit[1,1]<-M_index(RS,Exposure)
  SkewFit[2,1]<-Mc_index(RS,Exposure)
@@ -118,6 +121,9 @@ SkewGammaHyperParams[1,1]<-fitdistr(MMC[,1],"gamma")$estimate[1]
 SkewGammaHyperParams[1,2]<-fitdistr(MMC[,1],"gamma")$estimate[2]
 SkewGammaHyperParams[2,1]<-fitdistr(MMC[,2],"gamma")$estimate[1]
 SkewGammaHyperParams[2,2]<-fitdistr(MMC[,2],"gamma")$estimate[2]
+
+ colnames(SkewGammaHyperParams)<-c("Shape","Scale")
+ rownames(SkewGammaHyperParams)<-c("M","Mc")
 
  SkewFit<-matrix(NA,nrow=4,ncol=3)
  SkewFit[1,1]<-M_index(RS,Exposure)
