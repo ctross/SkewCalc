@@ -145,7 +145,7 @@ real P1;
 vector[N] P2;
 
 ######################################################################### Priors
-Theta ~ normal(0,5);
+Theta ~ normal(0,3);
 
 ######################################################### Gaussian Random Fields
 ####### Construct Gaussian Process for Mu
