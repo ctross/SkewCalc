@@ -87,6 +87,12 @@ SkewCalc<-function(RS,Exposure, Samples=1000, Warmup=500, Chains=1, Refresh=1, C
   if(Code=="GRF"){
  StanResults <- stan(model_code=skew_code_GRF, data=model_dat, thin=1, iter=Samples, warmup=Warmup, chains=Chains, refresh=Refresh)
  MMC<-extract(StanResults, pars="M_Mc")$M_Mc
+ 
+SkewGammaHyperParams<-matrix(NA,nrow=2,ncol=2)
+SkewGammaHyperParams[1,1]<-fitdistr(MMC[,1],"gamma")$estimate[1]
+SkewGammaHyperParams[1,2]<-fitdistr(MMC[,1],"gamma")$estimate[2]
+SkewGammaHyperParams[2,1]<-fitdistr(MMC[,2],"gamma")$estimate[1]
+SkewGammaHyperParams[2,2]<-fitdistr(MMC[,2],"gamma")$estimate[2]
 
  SkewFit<-matrix(NA,nrow=4,ncol=3)
  SkewFit[1,1]<-M_index(RS,Exposure)
@@ -102,10 +108,16 @@ SkewCalc<-function(RS,Exposure, Samples=1000, Warmup=500, Chains=1, Refresh=1, C
  rownames(SkewFit)<-c("M_Point_Estimate","Mc_Point_Estimate","M_Posterior_Estimate","Mc_Posterior_Estimate")
 
  print(SkewFit)
- SkewResults<<-list(SkewFit=SkewFit,StanResults=StanResults)}
+ SkewResults<<-list(SkewFit=SkewFit,StanResults=StanResults,SkewGammaHyperParams=SkewGammaHyperParams)}
  else{   if(Code=="Fast"){
  StanResults <- stan(model_code=skew_code_Fast, data=model_dat, thin=1, iter=Samples, warmup=Warmup, chains=Chains, refresh=Refresh)
        MMC<-extract(StanResults, pars="M_Mc")$M_Mc
+       
+SkewGammaHyperParams<-matrix(NA,nrow=2,ncol=2)
+SkewGammaHyperParams[1,1]<-fitdistr(MMC[,1],"gamma")$estimate[1]
+SkewGammaHyperParams[1,2]<-fitdistr(MMC[,1],"gamma")$estimate[2]
+SkewGammaHyperParams[2,1]<-fitdistr(MMC[,2],"gamma")$estimate[1]
+SkewGammaHyperParams[2,2]<-fitdistr(MMC[,2],"gamma")$estimate[2]
 
  SkewFit<-matrix(NA,nrow=4,ncol=3)
  SkewFit[1,1]<-M_index(RS,Exposure)
@@ -121,7 +133,7 @@ SkewCalc<-function(RS,Exposure, Samples=1000, Warmup=500, Chains=1, Refresh=1, C
  rownames(SkewFit)<-c("M_Point_Estimate","Mc_Point_Estimate","M_Posterior_Estimate","Mc_Posterior_Estimate")
 
  print(SkewFit)
- SkewResults<<-list(SkewFit=SkewFit,StanResults=StanResults)}
+ SkewResults<<-list(SkewFit=SkewFit,StanResults=StanResults,SkewGammaHyperParams=SkewGammaHyperParams)}
        else{
        testit <- function() warning("Code variable not defined correctly", call. = FALSE)
         testit()
