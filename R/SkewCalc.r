@@ -85,7 +85,7 @@ SkewCalc<-function(RS,Exposure, Samples=1000, Warmup=500, Chains=1, Refresh=1, C
   )
 
   if(Code=="GRF"){
- StanResults <- stan(model_code=skew_code_GRF, data=model_dat, thin=1, iter=Samples, warmup=Warmup, chains=Chains, refresh=Refresh)
+ StanResults <- stan(model_code=skew_code_GRF, data=model_dat, thin=1, iter=Samples, warmup=Warmup, chains=Chains, refresh=Refresh,init=0)
  MMC<-extract(StanResults, pars="M_Mc")$M_Mc
  
 SkewGammaHyperParams<-matrix(NA,nrow=2,ncol=2)
@@ -110,7 +110,7 @@ SkewGammaHyperParams[2,2]<-fitdistr(MMC[,2],"gamma")$estimate[2]
  print(SkewFit)
  SkewResults<<-list(SkewFit=SkewFit,StanResults=StanResults,SkewGammaHyperParams=SkewGammaHyperParams)}
  else{   if(Code=="Fast"){
- StanResults <- stan(model_code=skew_code_Fast, data=model_dat, thin=1, iter=Samples, warmup=Warmup, chains=Chains, refresh=Refresh)
+ StanResults <- stan(model_code=skew_code_Fast, data=model_dat, thin=1, iter=Samples, warmup=Warmup, chains=Chains, refresh=Refresh,init=0)
        MMC<-extract(StanResults, pars="M_Mc")$M_Mc
        
 SkewGammaHyperParams<-matrix(NA,nrow=2,ncol=2)
