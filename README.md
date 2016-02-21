@@ -11,7 +11,7 @@ install_github("Ctross/SkewCalc")
 A quick example:
 ```{r}
 library(SkewCalc)
-SkewCalc(SampleRS,SampleExposure, Samples=400, Warmup=200, Chains=1, Refresh=1, Code="Fast")
+SkewCalc(SampleRS,SampleExposure, Samples=400, Warmup=200, Chains=1, Refresh=1, Code="GRF")
 
 # Print results
 SkewResults$SkewFit
