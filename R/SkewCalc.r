@@ -185,6 +185,8 @@ skew_diagnositic_plots<-function(RS,Exposure,SkewResults=SkewResults){
 
 skew_posterior_plot<-function(RS,Exposure,SkewResults=SkewResults){
  require(RColorBrewer)
+  Exposure<-ifelse(Exposure>60,60,Exposure)
+  Exposure <- Exposure - 11
   jet.colors <-colorRampPalette(c("white",brewer.pal(9,"YlOrRd")))
  Pred<-extract(SkewResults$StanResults, pars="Pred")$Pred
   N<-length(RS)
