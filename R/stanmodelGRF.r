@@ -25,8 +25,10 @@ functions{
 ############################### Calculate M and Mc
 	K <- sum(scrapRS);
 	F <- sum(scrapExposure);
-	if(K==0 ||F==0){
- return 9999999;	
+	if(K==0 || F==0){
+	M[1]<-99999999;
+	M[2]<-99999999;
+ return M;	
 	}else{
 	Si <- ((scrapRS/K)-(scrapExposure/F)) .* ((scrapRS/K)-(scrapExposure/F));
 	S <- sum(Si);
