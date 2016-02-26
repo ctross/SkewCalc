@@ -4,7 +4,7 @@
 #
 # Then follow instructions https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started, or just run
 # source('http://mc-stan.org/rstan/install.R', echo = TRUE, max.deparse.length = 2000)
-# install_rstan()
+# install_rstan()#
 #
 
 
