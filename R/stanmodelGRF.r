@@ -25,11 +25,15 @@ functions{
 ############################### Calculate M and Mc
 	K <- sum(scrapRS);
 	F <- sum(scrapExposure);
+	if(K==0 ||F==0){
+ return 9999999;	
+	}else{
 	Si <- ((scrapRS/K)-(scrapExposure/F)) .* ((scrapRS/K)-(scrapExposure/F));
 	S <- sum(Si);
  	M[1] <- sqrt(N * S);                      # M
 	M[2] <- sqrt(N * S)*sqrt(mean(scrapRS));  # Mc
   return M;
+  }
 }
 
 ############################### Function to simulate predictions from the model
