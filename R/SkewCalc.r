@@ -136,7 +136,7 @@ Mc_index <- function(ki,ni) {
 }
 
  library(Cairo)
- library(SkewCalc)
+
  MergeRes<-function(Exposure,RS,NHM=FALSE){
                             if(NHM==FALSE){
  Exposure<-ifelse(Exposure>60,60,Exposure)
