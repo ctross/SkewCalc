@@ -6,7 +6,112 @@
 # source('http://mc-stan.org/rstan/install.R', echo = TRUE, max.deparse.length = 2000)
 # install_rstan()#
 #
+####################
+ N25<- function(x){
+ length(x[which(x>=25)])
+ }
 
+ RS0A25<- function(x,y){
+ dat<-data.frame(x,y)
+ dat2<-dat[which(dat[,1]>=25),]
+ length(which(dat2[,2]==0))
+ }
+
+ PercRS0A25<- function(x,y){
+ dat<-data.frame(x,y)
+ dat2<-dat[which(dat[,1]>=25),]
+ round(length(which(dat2[,2]==0))/length(dat2[,2]),2)
+ }
+
+ N45<- function(x){
+ length(x[which(x>=45)])
+ }
+
+ RS0A45<- function(x,y){
+ dat<-data.frame(x,y)
+ dat2<-dat[which(dat[,1]>=45),]
+ length(which(dat2[,2]==0))
+ }
+
+ PercRS0A45<- function(x,y){
+ dat<-data.frame(x,y)
+ dat2<-dat[which(dat[,1]>=45),]
+ round(length(which(dat2[,2]==0))/length(dat2[,2]),2)
+ }
+##################################
+
+N0<- function(x){
+ length(x)
+ }
+
+RSmean<- function(y){
+ mean(y)
+ }
+
+RSsum<- function(y){
+ sum(y)
+ }
+
+Exposuresum<- function(x){
+ sum(x)
+ }
+
+RSsd<- function(y){
+ sd(y)
+ }
+
+RSvar<- function(y){
+ var(y)
+ }
+
+RScv<- function(y){
+ sd(y)/mean(y)
+ }
+
+RSofs<- function(y){
+ var(y)/(mean(y)*mean(y))
+ }
+
+Gini<-function (y, corr = FALSE, na.rm = TRUE)
+{
+    if (!na.rm && any(is.na(y)))
+        return(NA_real_)
+    y <- as.numeric(na.omit(y))
+    n <- length(y)
+    y <- sort(y)
+    G <- sum(y * 1L:n)
+    G <- 2 * G/sum(y) - (n + 1L)
+    if (corr)
+        G/(n - 1L)
+    else G/n
+}
+
+RateGini<-function (y,x, corr = FALSE, na.rm = TRUE)
+{
+y<-y/x
+    if (!na.rm && any(is.na(y)))
+        return(NA_real_)
+    y <- as.numeric(na.omit(y))
+    n <- length(y)
+    y <- sort(y)
+    G <- sum(y * 1L:n)
+    G <- 2 * G/sum(y) - (n + 1L)
+    if (corr)
+        G/(n - 1L)
+    else G/n
+}
+
+Bindex <- function(ki,ni) {   #ki=rs,ni=exposure
+	Nt <- sum(ni)
+	Nbar <- Nt / max(ni)
+	K <- sum(ki)
+	if(K>0){
+		B = sum((ki / K - ni / Nt)^2) - (1 / K) * (1 - 1 / Nbar)
+	} else {
+		B = 0
+	}
+	B
+}
 
 M_index <- function(ki,ni) {
 	N <- length(ki)
@@ -29,6 +134,25 @@ Mc_index <- function(ki,ni) {
 	D1 <- sqrt(N * S)*sqrt(mean(ki))
   D1
 }
+
+ library(Cairo)
+ library(SkewCalc)
+ MergeRes<-function(Exposure,RS,NHM=FALSE){
+                            if(NHM==FALSE){
+ Exposure<-ifelse(Exposure>60,60,Exposure)
+ Exposure <- Exposure - 11
+         }
+   SkewCalc(RS,Exposure, Samples=1000, Warmup=500, Chains=1, Refresh=1, Code="GRF")
+
+  c(
+  N25(Exposure),RS0A25(Exposure,RS),PercRS0A25(Exposure,RS),N45(Exposure),RS0A45(Exposure,RS),PercRS0A45(Exposure,RS),
+  N0(RS),RSsum(RS),Exposuresum(Exposure),RSmean(RS),RSsd(RS),RSvar(RS),RScv(RS), RSofs(RS),Gini(RS),
+  RateGini(RS,Exposure),Bindex(RS,Exposure),M_index(RS,Exposure),Mc_index(RS,Exposure),
+  c(SkewResults$SkewFit),    c(SkewResults$SkewGammaHyperParams)
+  )
+ }
+
+
 
  concat<-function (...)
 {
