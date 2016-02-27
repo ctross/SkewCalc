@@ -69,6 +69,13 @@ Npp <- Npp + 1;
 }
 # Npp is the number of slots allocated to the density on max(Exposure) by P1
 
+if(Npp >= N){
+Npp<-N;
+
+  for( n in 1:Npp){
+       scrapExposure[n]<-MaxExposure;
+       }
+       }else{
 ############################################################################ RNG
 ################################################ Inflation model of Exposure
   for( n in 1:Npp){
@@ -84,6 +91,7 @@ Npp <- Npp + 1;
         Ticker<-1;}
         }
         scrapExposure[n]<-Nscrap;
+       }
        }
 ##################################################### RS conditional on exposure
   for( n in 1:N){
