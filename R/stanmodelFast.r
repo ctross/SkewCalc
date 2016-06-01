@@ -18,7 +18,7 @@ functions{
    scrapExposure[n]<-Scrap[N+n];   #
    }                               #
 
-############################### Calculate M and Mc
+############################### Calculate Mraw and M
 	K <- sum(scrapRS);
 	F <- sum(scrapExposure);
 	Si <- ((scrapRS/K)-(scrapExposure/F)) .* ((scrapRS/K)-(scrapExposure/F));
@@ -178,10 +178,10 @@ increment_log_prob( bernoulli_log(0,P2[n]) + neg_binomial_log(RS[n], Mu2[n]*B2[n
 ##### Simulate from the posterior
 ################################################################################
 generated quantities{
-vector[2] M_Mc;
+vector[2] Mraw_M;
 vector[2*N] Pred;
 
 Pred <- M_NB_rng(N,  MaxExposure, Theta);
-M_Mc  <- M(Pred ,N);
+Mraw_M  <- M(Pred ,N);
 }
 '
