@@ -1,5 +1,5 @@
 #
-# If you don't have stan, download and install R-Tools 
+# If you don't have Stan, download and install R-Tools 
 # https://github.com/stan-dev/rstan/wiki/Install-Rtools-for-Windows
 #
 # Then follow instructions https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started, or just run
@@ -113,7 +113,7 @@ Bindex <- function(ki,ni) {   #ki=rs,ni=exposure
 	B
 }
 
-M_index <- function(ki,ni) {
+Mraw_index <- function(ki,ni) {
 	N <- length(ki)
 	K <- sum(ki)
 	fi <- ni
@@ -124,7 +124,7 @@ M_index <- function(ki,ni) {
   C
 }
 
-Mc_index <- function(ki,ni) {
+M_index <- function(ki,ni) {
 	N <- length(ki)
 	K <- sum(ki)
 	fi <- ni
@@ -147,7 +147,7 @@ Mc_index <- function(ki,ni) {
   c(
   N25(Exposure),RS0A25(Exposure,RS),PercRS0A25(Exposure,RS),N45(Exposure),RS0A45(Exposure,RS),PercRS0A45(Exposure,RS),
   N0(RS),RSsum(RS),Exposuresum(Exposure),RSmean(RS),RSsd(RS),RSvar(RS),RScv(RS), RSofs(RS),Gini(RS),
-  RateGini(RS,Exposure),Bindex(RS,Exposure),M_index(RS,Exposure),Mc_index(RS,Exposure),
+  RateGini(RS,Exposure),Bindex(RS,Exposure),Mraw_index(RS,Exposure),M_index(RS,Exposure),
   c(SkewResults$SkewFit),    c(SkewResults$SkewGammaHyperParams)
   )
  }
@@ -210,7 +210,7 @@ SkewCalc<-function(RS,Exposure, Samples=1000, Warmup=500, Chains=1, Refresh=1, C
 
   if(Code=="GRF"){
  StanResults <- stan(model_code=skew_code_GRF, data=model_dat, thin=1, iter=Samples, warmup=Warmup, chains=Chains, refresh=Refresh,init=0)
- MMC<-extract(StanResults, pars="M_Mc")$M_Mc
+ MMC<-extract(StanResults, pars="Mraw_M")$Mraw_M
  MMC<-MMC[which(MMC[,1] < 9999),]
  MMC<-MMC[which(MMC[,2] < 9999),]
  
@@ -221,11 +221,11 @@ SkewGammaHyperParams[2,1]<-fitdistr(MMC[,2],"gamma")$estimate[1]
 SkewGammaHyperParams[2,2]<-fitdistr(MMC[,2],"gamma")$estimate[2]
 
  colnames(SkewGammaHyperParams)<-c("Shape","Scale")
- rownames(SkewGammaHyperParams)<-c("M","Mc")
+ rownames(SkewGammaHyperParams)<-c("Mraw","M")
 
  SkewFit<-matrix(NA,nrow=4,ncol=3)
- SkewFit[1,1]<-M_index(RS,Exposure)
- SkewFit[2,1]<-Mc_index(RS,Exposure)
+ SkewFit[1,1]<-Mraw_index(RS,Exposure)
+ SkewFit[2,1]<-M_index(RS,Exposure)
  SkewFit[3,1]<-median(MMC[,1])
  SkewFit[4,1]<-median(MMC[,2])
  SkewFit[3,2]<-HPDI(MMC[,1])[1]
@@ -234,13 +234,13 @@ SkewGammaHyperParams[2,2]<-fitdistr(MMC[,2],"gamma")$estimate[2]
  SkewFit[4,3]<-HPDI(MMC[,2])[2]
 
  colnames(SkewFit)<-c("Estimate","Lower_90%_HPDI","Upper_90%_HPDI")
- rownames(SkewFit)<-c("M_Point_Estimate","Mc_Point_Estimate","M_Posterior_Estimate","Mc_Posterior_Estimate")
+ rownames(SkewFit)<-c("Mraw_Point_Estimate","M_Point_Estimate","Mraw_Posterior_Estimate","M_Posterior_Estimate")
 
  print(SkewFit)
  SkewResults<<-list(SkewFit=SkewFit,StanResults=StanResults,SkewGammaHyperParams=SkewGammaHyperParams)}
  else{   if(Code=="Fast"){
  StanResults <- stan(model_code=skew_code_Fast, data=model_dat, thin=1, iter=Samples, warmup=Warmup, chains=Chains, refresh=Refresh,init=0)
-       MMC<-extract(StanResults, pars="M_Mc")$M_Mc
+       MMC<-extract(StanResults, pars="Mraw_M")$Mraw_M
         MMC<-MMC[which(MMC[,1] < 9999),]
  MMC<-MMC[which(MMC[,2] < 9999),]
        
@@ -251,11 +251,11 @@ SkewGammaHyperParams[2,1]<-fitdistr(MMC[,2],"gamma")$estimate[1]
 SkewGammaHyperParams[2,2]<-fitdistr(MMC[,2],"gamma")$estimate[2]
 
  colnames(SkewGammaHyperParams)<-c("Shape","Scale")
- rownames(SkewGammaHyperParams)<-c("M","Mc")
+ rownames(SkewGammaHyperParams)<-c("Mraw","M")
 
  SkewFit<-matrix(NA,nrow=4,ncol=3)
- SkewFit[1,1]<-M_index(RS,Exposure)
- SkewFit[2,1]<-Mc_index(RS,Exposure)
+ SkewFit[1,1]<-Mraw_index(RS,Exposure)
+ SkewFit[2,1]<-M_index(RS,Exposure)
  SkewFit[3,1]<-median(MMC[,1])
  SkewFit[4,1]<-median(MMC[,2])
  SkewFit[3,2]<-HPDI(MMC[,1])[1]
@@ -264,7 +264,7 @@ SkewGammaHyperParams[2,2]<-fitdistr(MMC[,2],"gamma")$estimate[2]
  SkewFit[4,3]<-HPDI(MMC[,2])[2]
 
  colnames(SkewFit)<-c("Estimate","Lower_90%_HPDI","Upper_90%_HPDI")
- rownames(SkewFit)<-c("M_Point_Estimate","Mc_Point_Estimate","M_Posterior_Estimate","Mc_Posterior_Estimate")
+ rownames(SkewFit)<-c("Mraw_Point_Estimate","M_Point_Estimate","Mraw_Posterior_Estimate","M_Posterior_Estimate")
 
  print(SkewFit)
  SkewResults<<-list(SkewFit=SkewFit,StanResults=StanResults,SkewGammaHyperParams=SkewGammaHyperParams)}
