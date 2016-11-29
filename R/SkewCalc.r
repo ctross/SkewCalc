@@ -142,7 +142,7 @@ M_index <- function(ki,ni) {
  Exposure<-ifelse(Exposure>60,60,Exposure)
  Exposure <- Exposure - 11
          }
-   SkewCalc(RS,Exposure, Samples=1000, Warmup=500, Chains=1, Refresh=1, Code="GRF",init=list(list("Theta"=rep(1,12))))
+   SkewCalc(RS,Exposure, Samples=1000, Warmup=500, Chains=1, Refresh=1, Code="GRF")
 
   c(
   N25(Exposure),RS0A25(Exposure,RS),PercRS0A25(Exposure,RS),N45(Exposure),RS0A45(Exposure,RS),PercRS0A45(Exposure,RS),
@@ -209,7 +209,7 @@ SkewCalc<-function(RS,Exposure, Samples=1000, Warmup=500, Chains=1, Refresh=1, C
   )
 
   if(Code=="GRF"){
- StanResults <- stan(model_code=skew_code_GRF, data=model_dat, thin=1, iter=Samples, warmup=Warmup, chains=Chains, refresh=Refresh,init=0)
+ StanResults <- stan(model_code=skew_code_GRF, data=model_dat, thin=1, iter=Samples, warmup=Warmup, chains=Chains, refresh=Refresh,init=list(list("Theta"=rep(1,12))))
  MMC<-extract(StanResults, pars="Mraw_M")$Mraw_M
  MMC<-MMC[which(MMC[,1] < 9999),]
  MMC<-MMC[which(MMC[,2] < 9999),]
