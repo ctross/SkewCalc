@@ -142,7 +142,7 @@ M_index <- function(ki,ni) {
  Exposure<-ifelse(Exposure>60,60,Exposure)
  Exposure <- Exposure - 11
          }
-   SkewCalc(RS,Exposure, Samples=1000, Warmup=500, Chains=1, Refresh=1, Code="GRF")
+   SkewCalc(RS,Exposure, Samples=1000, Warmup=500, Chains=1, Refresh=1, Code="GRF",init=list("Theta"=rep(1,12)))
 
   c(
   N25(Exposure),RS0A25(Exposure,RS),PercRS0A25(Exposure,RS),N45(Exposure),RS0A45(Exposure,RS),PercRS0A45(Exposure,RS),
