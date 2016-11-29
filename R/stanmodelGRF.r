@@ -47,6 +47,7 @@ vector M_NB_rng(int N, int MaxExposure, vector Theta, vector GRF_RS_Mu, vector G
  real NscrapR;              #
  int Npp;                   #
  int Ticker;                #
+ int Ticker2;               #
                             #
  int Nscrap;                #
  real P1;                   #
@@ -83,10 +84,12 @@ Npp<-N;
        }
   for( n in (Npp+1):N){
        Ticker <- 1;
+       Ticker2 <- 1;
        while (Ticker == 1) {
+       Ticker2<-Ticker2+1;
         Nscrap <-neg_binomial_rng(Mu1[n]*B1[n],B1[n]);
         if(Nscrap<=MaxExposure && Nscrap>0){
-        Ticker<-0;}
+        Ticker<-if_else(Ticker2<1000,0,1);} # Get out of infinite loop if parameters at warmup are crappy
         else{
         Ticker<-1;}
         }
