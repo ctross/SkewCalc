@@ -209,7 +209,10 @@ SkewCalc<-function(RS,Exposure, Samples=1000, Warmup=500, Chains=1, Refresh=1, C
   )
 
   if(Code=="GRF"){
- StanResults <- stan(model_code=skew_code_GRF, data=model_dat, thin=1, iter=Samples, warmup=Warmup, chains=Chains, refresh=Refresh,init=list(list("Theta"=rep(1,12))))
+ StanResults <- stan(model_code=skew_code_GRF, data=model_dat, thin=1, iter=Samples, warmup=Warmup, chains=Chains, refresh=Refresh,init=list(list("Theta"=c(-1.77332111675962, 3.64550431504645, -2.42513141190106, 
+0.778754260767941, 0.72406510274349, 1.37077117808584, -2.45955810303719, 
+-1.56487483132648, 7.95545256046806, 1.22579922010794, -0.76952378180052, 
+-0.19707180036865))))
  MMC<-extract(StanResults, pars="Mraw_M")$Mraw_M
  MMC<-MMC[which(MMC[,1] < 9999),]
  MMC<-MMC[which(MMC[,2] < 9999),]
