@@ -89,7 +89,7 @@ Npp<-N;
        Ticker2<-Ticker2+1;
         Nscrap <-neg_binomial_rng(Mu1[n]*B1[n],B1[n]);
         if(Nscrap<=MaxExposure && Nscrap>0){
-         if(Ticker2<1000){Ticker<-0;} else {Ticker<-1;} # Get out of infinite loop if parameters at warmup are crappy
+         if(Ticker2<100){Ticker<-0;} else {Ticker<-1;} # Get out of infinite loop if parameters at warmup are crappy
         }
         else{
         Ticker<-1;}
