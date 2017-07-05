@@ -139,7 +139,7 @@ real P1;
 vector[N] P2;
 
 ######################################################################### Priors
-Theta ~ normal(0,1);
+Theta ~ normal(0,3);
 
 ############################## Model of Point Density on Exposure=max(Exposure)
 P1 <- inv_logit(Theta[1]);
