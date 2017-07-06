@@ -183,7 +183,7 @@ for (i in 1:MaxExposure){
 
          GRF_RS_Mu ~ multi_normal_cholesky( ZeroPrior , exp(Theta[5])*X );      //# Model GP in Cholesky notation for efficiancy
 
-####### Construct Gaussian Process for Zeros
+//####### Construct Gaussian Process for Zeros
 for (i in 1:(MaxExposure-1)){
 for (j in (i+1):MaxExposure){
  ME = MaxExposure;
