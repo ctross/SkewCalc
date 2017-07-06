@@ -218,9 +218,9 @@ P2[n] = inv_logit(Theta[7] + GRF_RS_Zero[Exposure[n]]);          //# Model of Ze
 //############################################ Negative Binomial Model of Exposure
 for (n in 1:N) {
 if(Exposure[n]==MaxExposure){
-target+=( log_sum_exp(bernoulli_lpmf(1|P1), bernoulli_lpmf(0|P1) + (neg_binomial_lpmf(Exposure[n]| Mu1[n]*B1[n], B1[n])-neg_binomial_cdf_lpmf(MaxExposure| Mu1[n]*B1[n], B1[n]))));
+target+=( log_sum_exp(bernoulli_lpmf(1|P1), bernoulli_lpmf(0|P1) + (neg_binomial_lpmf(Exposure[n]| Mu1[n]*B1[n], B1[n])-neg_binomial_lcdf(MaxExposure| Mu1[n]*B1[n], B1[n]))));
 }else {
-target+=( bernoulli_lpmf(0|P1) + (neg_binomial_lpmf(Exposure[n]| Mu1[n]*B1[n],  B1[n])-neg_binomial_cdf_lpmf(MaxExposure| Mu1[n]*B1[n], B1[n])));
+target+=( bernoulli_lpmf(0|P1) + (neg_binomial_lpmf(Exposure[n]| Mu1[n]*B1[n],  B1[n])-neg_binomial_lcdf(MaxExposure| Mu1[n]*B1[n], B1[n])));
 }
 }
 //################################################## Negative Binomial Model of RS
