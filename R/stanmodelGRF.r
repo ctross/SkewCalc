@@ -165,11 +165,11 @@ vector[N] P2;
 
 //######################################################################### Priors
 for(i in 1:5)
-Theta[i] ~ normal(0,2.5);
+Theta[i] ~ normal(0,5);
 for(i in 7:12)
-Theta[i] ~ normal(0,2.5);
+Theta[i] ~ normal(0,5);
 
-Theta[6] ~ normal(2.5,5);
+Theta[6] ~ normal(5,5);
 
 //######################################################### Gaussian Random Fields
 //####### Construct Gaussian Process for Mu
