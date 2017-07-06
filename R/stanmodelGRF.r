@@ -85,16 +85,20 @@ Npp=N;
   for( n in (Npp+1):N){
        Ticker = 1;
        Ticker2 = 1;
+
        while (Ticker == 1) {
-       Ticker2=Ticker2+1;
+        Ticker2=Ticker2+1;
         Nscrap =neg_binomial_rng(Mu1[n]*B1[n],B1[n]);
         if(Nscrap<=MaxExposure && Nscrap>0){
-         if(Ticker2<30){Ticker=0;} else {Ticker=1;} //# Get out of infinite loop if parameters at warmup are crappy
+         scrapExposure[n]=Nscrap;
+         Ticker=0;} 
         }
-        else{
-        Ticker=1;}
+        else{//# Get out of infinite loop if parameters at warmup are crappy
+        if(Ticker2<100){Ticker=1;}
+        else{Ticker=0;}
+       scrapExposure[n]=MaxExposure;
         }
-        scrapExposure[n]=Nscrap;
+      
        }
        }
 //##################################################### RS conditional on exposure
