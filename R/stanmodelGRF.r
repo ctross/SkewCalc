@@ -97,7 +97,8 @@ Npp=N;
         else{Ticker=0;
        scrapExposure[n]=MaxExposure;
          }}
-       } }
+       }
+       }}
 //##################################################### RS conditional on exposure
   for( n in 1:N){
     scrapRS[n]=neg_binomial_rng(exp(Theta[4] + GRF_RS_Mu[scrapExposure[n]])*exp(Theta[6]),exp(Theta[6]));
@@ -108,10 +109,9 @@ Npp=N;
        scrap[N+n]=scrapExposure[n];
        }
   return scrap;
-       }
 
 }
-
+}
 //################################################################################
 //##### Declare data to be used in model
 //################################################################################
