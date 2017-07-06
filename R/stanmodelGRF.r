@@ -91,16 +91,13 @@ Npp=N;
         Nscrap =neg_binomial_rng(Mu1[n]*B1[n],B1[n]);
         if(Nscrap<=MaxExposure && Nscrap>0){
          scrapExposure[n]=Nscrap;
-         Ticker=0;} 
-        
-        else{//# Get out of infinite loop if parameters at warmup are crappy
+         Ticker=0;}
+            else{//# Get out of infinite loop if parameters at warmup are crappy
         if(Ticker2<100){Ticker=1;}
-        else{Ticker=0;}
+        else{Ticker=0;
        scrapExposure[n]=MaxExposure;
-        }
-      
-       }
-       }
+         }}
+       } }
 //##################################################### RS conditional on exposure
   for( n in 1:N){
     scrapRS[n]=neg_binomial_rng(exp(Theta[4] + GRF_RS_Mu[scrapExposure[n]])*exp(Theta[6]),exp(Theta[6]));
