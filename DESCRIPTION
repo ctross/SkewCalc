@@ -4,8 +4,8 @@ Date: 2019-01-10
 Title: Estimation Of Reproductive Skew
 Author: Cody Ross and Paul Hooper
 Maintainer: Cody Ross <ctross@ucdavis.edu>
-Depends: MASS, rstan, RColorBrewer
-Suggests: MASS, rstan, RColorBrewer
+Depends: MASS, rstan, RColorBrewer, ggplot2, gridExtra, grid
+Suggests: MASS, rstan, RColorBrewer, ggplot2, gridExtra, grid
 Description: SkewCalc allows users to calculate the posterior confidence intervals for estimates of M and Mraw.
 License: GPL 
 URL: https://github.com/Ctross/SkewCalc
