@@ -52,7 +52,10 @@ Alpha <- 1.1
 Beta <- 0.81
 
 Time <- round(runif(N,1,70),0)
-RS <- rpois(Alpha*Time^Beta
+
+RS <- rep(NA,N)
+for(i in 1:N)
+RS <- rpois(1,Alpha*Time[i]^Beta)
 
 # Fit models
 M_index_stan(RS,Time) 
