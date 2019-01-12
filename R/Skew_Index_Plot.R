@@ -54,8 +54,8 @@ p <- ggplot(data=dfx) +
     geom_vline(xintercept=medx, color='#FFFFFF',size=2)
  
 print(p)
-if(save != FALSE){
- ggsave(file=paste0(save,".pdf"), p,width=4,height=4) 
+if(Save != FALSE){
+ ggsave(file=paste0(Save,".pdf"), p,width=4,height=4) 
                }
             }
   
