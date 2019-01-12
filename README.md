@@ -123,7 +123,7 @@ Time <- round(runif(N,1,70),0)
 RS <- rep(NA,N)
 for(i in 1:N){
 Mu <- Alpha*Time[i]^Beta
-B <- 10
+B <- 0.1
 Lambda <- rgamma(1,Mu*B,B)
 RS[i] <- rpois(1,Lambda)
 }
