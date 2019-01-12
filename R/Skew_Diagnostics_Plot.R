@@ -11,7 +11,7 @@
 #' M_index_stan(RS, Age)
 #' skew_index_plot(Index="M", Age=FALSE, Save=FALSE)
 
-skew_diagnositics_plot<-function(RS,T1,T0=0,SkewResults=StanReults, save=FALSE){  
+skew_diagnostics_plot<-function(RS,T1,T0=0,SkewResults=StanReults, save=FALSE){  
   P_RS<-c(extract(StanResults, pars="P_RS")$P_RS)
   P_T1<-extract(StanResults, pars="P_T1")$P_T1
   P_T0<-extract(StanResults, pars="P_T0")$P_T0
