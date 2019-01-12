@@ -35,7 +35,7 @@ M_index_from_B_index(B_index(RS,Time),sum(RS),length(RS))
 Mraw_index_from_B_index(B_index(RS,Time),sum(RS),length(RS)) 
 
 # Check the model predictions of RS and exposure time. The distributions should overlap in the first 2 plots. In the third plot, the sample data should appear in the higher density region of the predictions in the bivarate plot.
-skew_diagnositics_plot(RS,Time)
+skew_diagnostics_plot(RS,Time)
 
 # Finally, plot the posterior estimates of M or Mraw
 skew_index_plot("M",Age=FALSE)
@@ -65,7 +65,7 @@ M_index_from_B_index(B_index(RS,Time),sum(RS),length(RS))
 Mraw_index_from_B_index(B_index(RS,Time),sum(RS),length(RS)) 
 
 # Check the model predictions of RS and exposure time. The distributions should overlap in the first 2 plots. In the third plot, the sample data should appear in the higher density region of the predictions in the bivarate plot.
-skew_diagnositics_plot(RS,Time)
+skew_diagnostics_plot(RS,Time)
 
 # Finally, plot the posterior estimates of M or Mraw
 skew_index_plot("M",Age=FALSE)
@@ -102,7 +102,7 @@ M_index_from_B_index(B_index(RS,Time),sum(RS),length(RS))
 Mraw_index_from_B_index(B_index(RS,Time),sum(RS),length(RS)) 
 
 # Check the model predictions of RS and exposure time. The distributions should overlap in the first 2 plots. In the third plot, the sample data should appear in the higher density region of the predictions in the bivarate plot.
-skew_diagnositics_plot(RS,Time)
+skew_diagnostics_plot(RS,Time)
 
 # Finally, plot the posterior estimates of M or Mraw
 skew_index_plot("M",Age=FALSE)
@@ -142,7 +142,7 @@ M_index_from_B_index(B_index(RS,Time),sum(RS),length(RS))
 Mraw_index_from_B_index(B_index(RS,Time),sum(RS),length(RS)) 
 
 # Check the model predictions of RS and exposure time. The distributions should overlap in the first 2 plots. In the third plot, the sample data should appear in the higher density region of the predictions in the bivarate plot.
-skew_diagnositics_plot(RS,Time)
+skew_diagnostics_plot(RS,Time)
 
 # Finally, plot the posterior estimates of M or Mraw
 skew_index_plot("M",Age=FALSE)
