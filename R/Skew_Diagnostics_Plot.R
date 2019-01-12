@@ -36,7 +36,7 @@ skew_diagnostics_plot<-function(RS,T1,T0=0,SkewResults=StanReults, save=FALSE){
   
    
   grob3 <- ggplot(df1, aes(x=Age, y=RS) )  +
-       geom_hex(bins = 50) +
+       geom_hex(bins = 25) +
        scale_fill_gradient(low = "gainsboro", high = "darkorange2") + 
        geom_point(data = df2)
   
