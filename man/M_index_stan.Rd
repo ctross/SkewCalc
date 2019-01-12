@@ -4,15 +4,17 @@
 \alias{M_index_stan}
 \title{M index of reproductive skew using Stan to simulate the population distribution of RS and age.}
 \usage{
-M_index_stan(r, t, t0 = FALSE, Samples = 2000, Warmup = 1000,
-  Chains = 1, adapt_delta = 0.9, max_treedepth = 12)
+M_index_stan(r, t, t0 = FALSE, Fast = TRUE, Samples = 2000,
+  Warmup = 1000, Chains = 1, adapt_delta = 0.9, max_treedepth = 12)
 }
 \arguments{
 \item{r}{A vector of RS values.}
 
 \item{t}{A vector of ages at death or last census.}
 
-\item{t}{A vector of ages at first census. Defaults to zero.}
+\item{t0}{A vector of ages at first census. Defaults to zero.}
+
+\item{Fast}{If TRUE then the model uses a faster model specification. If FALSE, then the model uses truncated distributions to more accuratly represent the data distribution.}
 }
 \value{
 A Stan object is saved to the workspace. This will be used for plots and calculations. The M and Mraw results have 4 columns each:
