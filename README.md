@@ -108,17 +108,25 @@ skew_diagnositics_plot(RS,Time)
 skew_index_plot("M",Age=FALSE)
 ```
 
-4) Now, an extreme case.
+4) Now, lets introduce more skew.
 ```{r}
 # Load library and attach data
 library(SkewCalc)  
 
 # Prepare data
-N <- 100
+N <- 1000
+Alpha <- 1.1
+Beta <- 0.81
 
-Time <- rep(45,N)
+Time <- round(runif(N,1,70),0)
 
-RS <- rep(3,N)
+RS <- rep(NA,N)
+for(i in 1:N){
+Mu <- Alpha*Time[i]^Beta
+B <- 10
+Lambda <- rgamma(1,Mu*B,B)
+RS[i] <- rpois(1,Lambda)
+}
 
 # Fit models
 M_index_stan(RS,Time) 
@@ -139,9 +147,6 @@ skew_diagnositics_plot(RS,Time)
 # Finally, plot the posterior estimates of M or Mraw
 skew_index_plot("M",Age=FALSE)
 ```
-
-In this last case, the Stan mode fails because the data generating process is very different from what Stan assumes. 
-
 
 
 
