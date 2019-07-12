@@ -33,11 +33,11 @@ Mraw_index(RS,Time)
 Mraw_index_age(RS,Time) 
 Mraw_index_from_B_index(B_index(RS,Time),sum(RS),length(RS)) 
 
-# Check the model predictions of RS and exposure time. The distributions should overlap in the first 2 plots. In the third plot, the sample data should appear in the higher density region of the predictions in the bivarate plot.
-skew_diagnostics_plot(RS,Time)
-
 # Finally, plot the posterior estimates of M or Mraw
 skew_index_plot("M",Age=FALSE)
+skew_index_plot("M",Age=TRUE)
+skew_index_plot("Mraw",Age=FALSE)
+skew_index_plot("Mraw",Age=TRUE)
 ```
 
 2) We use a larger data-set from Monique Borgerhoff Mulder collected from Kipsigis Men. 
