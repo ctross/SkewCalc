@@ -8,12 +8,17 @@
 #' Age = rpois(100, 45)
 #' M_index(RS, Age)
 
-M_index = function(r, t){
+M_index = function(r, t,Samples=1000){
   if(min(t) <= 0){
   return(NA)
   }else{
-    X = rmultinom(1,sum(r),t/sum(t))
-    M = Mraw_index(r,t)^2 - Mraw_index(X,t)^2
+    E_Mraw_sq = rep(NA,Samples)
+    for(j in 1: Samples){
+      R = sum(r)
+      t_hat = t/sum(t)
+      E_Mraw_sq[j] <- Mraw_index(rmultinom(1,R,t_hat),t)^2
+      }
+    M = Mraw_index(r,t)^2 - mean(E_Mraw_sq)
   return(M)
   }    
 }
