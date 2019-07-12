@@ -27,11 +27,10 @@ M_index_stan(RS,Time)
 # Contrast the Stan model to the point estimates
 M_index(RS,Time) 
 M_index_age(RS,Time) 
+M_index_from_B_index(B_index(RS,Time),sum(RS),length(RS)) 
 
 Mraw_index(RS,Time) 
 Mraw_index_age(RS,Time) 
-
-M_index_from_B_index(B_index(RS,Time),sum(RS),length(RS)) 
 Mraw_index_from_B_index(B_index(RS,Time),sum(RS),length(RS)) 
 
 # Check the model predictions of RS and exposure time. The distributions should overlap in the first 2 plots. In the third plot, the sample data should appear in the higher density region of the predictions in the bivarate plot.
