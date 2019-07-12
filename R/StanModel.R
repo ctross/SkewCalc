@@ -91,6 +91,3 @@ generated quantities{
 }
 } "
 
-
-
-
