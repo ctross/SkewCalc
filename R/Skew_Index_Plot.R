@@ -15,22 +15,22 @@ skew_index_plot<-function(Index="M", Age=FALSE, SkewResults=StanReults, Save=FAL
    
   if(Index=="M" && Age==FALSE){
   M <- extract(StanResults, pars="M")$M
-  Point <- median(M)
+  Point <- M_index(model_dat$r,model_dat$t) 
   }
   
   if(Index=="Mraw" && Age==FALSE){
   M <- extract(StanResults, pars="M_raw")$M_raw
-  Point <- median(M)
+  Point <- Mraw_index(model_dat$r,model_dat$t) 
   }
   
   if(Index=="M" && Age==TRUE){
   M <- extract(StanResults, pars="M_age")$M_age
-  Point <- median(M)
+  Point <- M_index_age(model_dat$r,model_dat$t,model_dat$t0) 
   }
   
   if(Index=="Mraw" && Age==TRUE){
   M <- extract(StanResults, pars="M_raw_age")$M_raw_age
-  Point <- median(M)
+  Point <- Mraw_index_age(model_dat$r,model_dat$t,model_dat$t0) 
   }
   
   q5  <- quantile(M, .05) 
@@ -46,8 +46,8 @@ p <- ggplot(data=dfx) +
      geom_density(aes(x=M, y = ..density..), color = 'darkorange2') +
      geom_area(data = subset(df.dens, x >= q5 & x <= q95), 
               aes(x=x,y=y), fill='darkorange2', alpha=0.6) +
-    geom_vline(xintercept=Point, col="darkorange4") +
-    geom_vline(xintercept=medx, color='#FFFFFF',size=2)
+     geom_vline(xintercept=medx, color='#FFFFFF',size=2) +
+     geom_vline(xintercept=Point, col="darkorange4")
  
 print(p)
 if(Save != FALSE){
