@@ -15,10 +15,10 @@ B_index = function(r, t){
   } 
   else{                      
   T = sum(t)
-	Tbar = T / max(t)
+	Nbar = T / max(t)
 	R = sum(r)
 	if(R > 0){
-	B = sum((r / R - t / T)^2) - (1 / R) * (1 - 1 / Tbar)
+	B = sum((r / R - t / T)^2) - (1 / R) * (1 - 1 / Nbar)
 	} else {
 	B = 0
 	}
