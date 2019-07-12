@@ -48,7 +48,7 @@ model{
  
  alpha ~ dirichlet(rep_vector(1,N));
  
-	r ~ multinomial(t_hat); 
+ r ~ multinomial(t_hat); 
  r ~ multinomial(t_hat_star); 
  r ~ multinomial(alpha); 
 }
