@@ -27,3 +27,15 @@ NULL
 #'}
 #' @source Monique Borgerhoff Mulder
 "SukumaMales"
+
+#' @title ColombiaRS
+#' @description Reproductive success, age, sex, and group for a sample of rural Colombians.
+#' @format A data frame with 289 rows and 5 variables:
+#' \describe{
+#'   \item{\code{code}}{Personal ID code.}
+#'   \item{\code{age}}{Age at death or last census.}
+#'   \item{\code{rs}}{Reproductive success. Children born.}
+#'   \item{\code{group}}{Afrocolombian or Embera.}
+#'}
+#' @source Cody T. Ross
+"ColombiaRS"
