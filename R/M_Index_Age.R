@@ -13,8 +13,13 @@ M_index_age = function(r,t,t0=0) {
   if(min(t-t0) <= 0){
   return(NA)
    } else{
-    X = rmultinom(1,sum(r),t/sum(t))
-    M = Mraw_index_age(r,t,t0)^2 - Mraw_index_age(X,t,t0)^2
+     E_Mraw_sq = rep(NA,Samples)
+    for(j in 1: Samples){
+      R = sum(r)
+      t_hat = t/sum(t)
+      E_Mraw_sq[j] <- Mraw_index_age(rmultinom(1,R,t_hat),t,t0)^2
+      }
+    M = Mraw_index_age(r,t,t0)^2 - mean(E_Mraw_sq)
   return(M)
   }
 }
