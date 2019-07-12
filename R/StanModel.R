@@ -1,4 +1,4 @@
-model_code <- 
+model_code <- "
 functions{
  real Mraw(vector r, vector t){
   int N = rows(r);
@@ -71,4 +71,4 @@ generated quantities{
  M_age = M_raw_age^2 - Bias^2;
 }
 }
-
+"
