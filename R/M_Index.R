@@ -12,7 +12,8 @@ M_index = function(r, t){
   if(min(t) <= 0){
   return(NA)
   }else{
-  M = Mraw_index(r, t)*sqrt(mean(r))
+    X = rmultinom(1,sum(R),t/sum(T))
+    M = Mraw_index(r,t)^2 - Mraw_index(X,t)^2
   return(M)
-  }
+  }    
 }
