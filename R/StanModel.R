@@ -21,7 +21,7 @@ functions{
  vector pow2(vector x, real y){
    vector[rows(x)] z;
    for (i in 1:rows(x)) 
-   z[i] <- x[i]^y;
+   z[i] = x[i]^y;
    return(z);
   }
 }
