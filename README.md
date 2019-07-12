@@ -145,7 +145,37 @@ skew_index_plot("Mraw",Age=TRUE)
 ```
 
 
+4) Finally, an analysis by sex and cultural group:
+```{r}
+# Load library and attach data
+library(SkewCalc)  
+data(ColombiaRS) 
+d <- ColombiaRS
 
+# Fit models
+M_index_stan(d$R[which(d$E=="AFROCOLOMBIAN" & d$S=="M")],d$A[which(d$E=="AFROCOLOMBIAN" & d$S=="M")]) 
+M_post_A_male <- extract(StanResults, pars="M")$M
+M_point_A_male <- M_index(model_dat$r,model_dat$t) 
+
+M_index_stan(d$R[which(d$E=="AFROCOLOMBIAN" & d$S=="F")],d$A[which(d$E=="AFROCOLOMBIAN" & d$S=="F")]) 
+M_post_A_female <- extract(StanResults, pars="M")$M
+M_point_A_female <- M_index(model_dat$r,model_dat$t) 
+
+M_index_stan(d$R[which(d$E=="EMBERA" & d$S=="M")],d$A[which(d$E=="EMBERA" & d$S=="M")]) 
+M_post_E_male <- extract(StanResults, pars="M")$M
+M_point_E_male <- M_index(model_dat$r,model_dat$t) 
+
+M_index_stan(d$R[which(d$E=="EMBERA" & d$S=="F")],d$A[which(d$E=="EMBERA" & d$S=="F")]) 
+M_post_E_female <- extract(StanResults, pars="M")$M
+M_point_E_female <- M_index(model_dat$r,model_dat$t) 
+
+
+# Finally, plot the posterior estimates of M or Mraw
+skew_index_plot("M",Age=FALSE)
+skew_index_plot("M",Age=TRUE)
+skew_index_plot("Mraw",Age=FALSE)
+skew_index_plot("Mraw",Age=TRUE)
+```
 
 
 
