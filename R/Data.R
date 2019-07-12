@@ -35,6 +35,7 @@ NULL
 #'   \item{\code{code}}{Personal ID code.}
 #'   \item{\code{age}}{Age at death or last census.}
 #'   \item{\code{rs}}{Reproductive success. Children born.}
+#'   \item{\code{sex}}{Sex.}
 #'   \item{\code{group}}{Afrocolombian or Embera.}
 #'}
 #' @source Cody T. Ross
