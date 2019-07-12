@@ -17,7 +17,14 @@ functions{
  Mraw = sqrt(N * sum(s)); 
  return Mraw;            
   }
- }
+
+vector pow2(vector x, real y){
+vector[rows(x)] z;
+for (i in 1:rows(x)) 
+z[i] <- x[i]^y;
+return(z);
+  }
+}
 
 data{
  int N;
@@ -43,8 +50,8 @@ model{
  T = sum((t-t0));
  t_hat = (t-t0)/T;
  
- T_star = sum((t^gamma - t0^gamma));
- t_hat_star = (t^gamma - t0^gamma)/T_star;
+ T_star = sum((pow2(t,gamma) - pow2(t0,gamma)));
+ t_hat_star = ((pow2(t,gamma) - pow2(t0,gamma)))/T_star;
  
  alpha ~ dirichlet(rep_vector(1,N));
  
@@ -59,18 +66,31 @@ generated quantities{
  real M_raw_age;
  real M_age;
  
-{ real Bias;
+{ 
+ real Bias;
+ real T;
+ real T_star;
+ 
+ vector[N] t_hat;
+ vector[N] t_hat_star;
+
+ T = sum((t-t0));
+ t_hat = (t-t0)/T;
+ 
+ T_star = sum((pow2(t,gamma) - pow2(t0,gamma)));
+ t_hat_star = ((pow2(t,gamma) - pow2(t0,gamma)))/T_star;
 
  M_raw =  Mraw(alpha,t_hat);
  M_raw_age =  Mraw(alpha,t_hat_star);
  
- Bias = Mraw(to_vector(multinomial_rng((t-t0)/sum(t-t0),sum(r))),(t-t0));
+ Bias = Mraw(to_vector(multinomial_rng(t_hat,sum(r))),t_hat);
  M = M_raw^2 - Bias^2;
  
- Bias = Mraw(to_vector(multinomial_rng((t^gamma - t0^gamma)/sum(t^gamma - t0^gamma),sum(r))),(t^gamma - t0^gamma));
+ Bias = Mraw(to_vector(multinomial_rng(t_hat_star,sum(r))),t_hat_star);
  M_age = M_raw_age^2 - Bias^2;
 }
 } "
 
 
+StanResults <- stan(model_code=model_code, data=model_dat)
 
