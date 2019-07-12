@@ -151,6 +151,7 @@ skew_index_plot("Mraw",Age=TRUE)
 library(SkewCalc) 
 data(SukumaMales) 
 data(KipsigisMales) 
+data(KipsigisFemales) 
 data(ColombiaRS) 
 d <- ColombiaRS
 
@@ -178,6 +179,10 @@ M_index_stan(KipsigisMales$rs, KipsigisMales$age)
 M_post_K_male <- extract(StanResults, pars="M")$M
 M_point_K_male <- M_index(model_dat$r,model_dat$t) 
 
+M_index_stan(KipsigisFemales$rs, KipsigisFemales$age)
+M_post_K_female <- extract(StanResults, pars="M")$M
+M_point_K_female <- M_index(model_dat$r,model_dat$t) 
+
 # Finally, plot the posterior estimates of M by group and sex
 df1 <- data.frame(M=M_post_A_male,Sex=rep("Male",length(M_post_A_male)),Group=rep("Afrocolombian",length(M_post_A_male)))
 df2 <- data.frame(M=M_post_A_female,Sex=rep("Female",length(M_post_A_female)),Group=rep("Afrocolombian",length(M_post_A_female)))
@@ -185,7 +190,8 @@ df3 <- data.frame(M=M_post_E_male,Sex=rep("Male",length(M_post_E_male)),Group=re
 df4 <- data.frame(M=M_post_E_female,Sex=rep("Female",length(M_post_E_female)),Group=rep("Embera",length(M_post_E_female)))
 df5 <- data.frame(M=M_post_S_male,Sex=rep("Male",length(M_post_S_male)),Group=rep("Sukuma",length(M_post_S_male)))
 df6 <- data.frame(M=M_post_K_male,Sex=rep("Male",length(M_post_K_male)),Group=rep("Kipsigis",length(M_post_K_male)))
-df <- rbind(df1,df2,df3,df4,df5,df6)
+df7 <- data.frame(M=M_post_K_female,Sex=rep("Female",length(M_post_K_female)),Group=rep("Kipsigis",length(M_post_K_female)))
+df <- rbind(df1,df2,df3,df4,df5,df6,df7)
 ```
 
 
