@@ -92,5 +92,5 @@ generated quantities{
 } "
 
 
-StanResults <- stan(model_code=model_code, data=model_dat)
+
 
