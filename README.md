@@ -170,11 +170,13 @@ M_post_E_female <- extract(StanResults, pars="M")$M
 M_point_E_female <- M_index(model_dat$r,model_dat$t) 
 
 
-# Finally, plot the posterior estimates of M or Mraw
-skew_index_plot("M",Age=FALSE)
-skew_index_plot("M",Age=TRUE)
-skew_index_plot("Mraw",Age=FALSE)
-skew_index_plot("Mraw",Age=TRUE)
+# Finally, plot the posterior estimates of M by group and sex
+df1 <- data.frame(M=M_post_A_male,Sex=rep("Male",length(M_post_A_male)),Group=rep("Afrocolombian",length(M_post_A_male)))
+df2 <- data.frame(M=M_post_A_female,Sex=rep("Female",length(M_post_A_female)),Group=rep("Afrocolombian",length(M_post_A_female)))
+df3 <- data.frame(M=M_post_E_male,Sex=rep("Male",length(M_post_E_male)),Group=rep("Embera",length(M_post_E_male)))
+df4 <- data.frame(M=M_post_E_female,Sex=rep("Female",length(M_post_E_female)),Group=rep("Embera",length(M_post_E_female)))
+
+df <- rbind(df1,df2,df3,df4)
 ```
 
 
