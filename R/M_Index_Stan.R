@@ -23,15 +23,15 @@ M_index_stan = function(r, t, t0=FALSE, Samples=2000, Warmup=1000, Chains=1, ada
 
    model_dat<-list(
     N=length(r),
-    RS=r,
-    T1=t,
-    T0=T0
+    r=r,
+    t=t,
+    t0=t0
     )
     
 StanResults <<- stan(model_code=model_code, data=model_dat, thin=1, iter=Samples, 
                     warmup=Warmup, chains=Chains, refresh=refresh,
                     control=list(adapt_delta=adapt_delta, max_treedepth=max_treedepth))
 
-print(StanResults,pars=c("M_index", "Mraw_index","M_index_age", "Mraw_index_age", "Gamma"))
+print(StanResults,pars=c("M_index", "Mraw_index","M_index_age", "Mraw_index_age", "gamma"))
 
 }
