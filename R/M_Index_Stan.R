@@ -28,7 +28,7 @@ M_index_stan = function(r, t, t0=FALSE, Samples=2000, Warmup=1000, Chains=1, ada
     t0=t0
     )
     
-StanResults <<- stan(model_code=model_code, data=model_dat, thin=1, iter=Samples, 
+StanResults <- stan(model_code=model_code, data=model_dat, thin=1, iter=Samples, 
                     warmup=Warmup, chains=Chains, refresh=refresh,
                     control=list(adapt_delta=adapt_delta, max_treedepth=max_treedepth))
 
