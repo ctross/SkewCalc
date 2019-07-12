@@ -19,7 +19,7 @@ M_index_stan = function(r, t, t0=FALSE, Samples=2000, Warmup=1000, Chains=1, ada
    return(NA)
    }else{
    if(length(t0)==1)
-   T0 = rep(0,length(r))
+   t0 = rep(0,length(r))
 
    model_dat<-list(
     N=length(r),
