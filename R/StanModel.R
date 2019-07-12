@@ -1,4 +1,4 @@
-model_code <- "
+model_code <-" 
 functions{
  real Mraw(vector r, vector t){
   int N = rows(r);
@@ -29,8 +29,8 @@ return(z);
 data{
  int N;
  int r[N];
- vector[N] t;	
- vector[N] t0;	
+ vector[N] t; 
+ vector[N] t0;  
 }
 
 parameters{
@@ -47,11 +47,11 @@ model{
  
  gamma ~ normal(0,1);
  
- T = sum((t-t0));
+ T = sum(t-t0);
  t_hat = (t-t0)/T;
  
- T_star = sum((pow2(t,gamma) - pow2(t0,gamma)));
- t_hat_star = ((pow2(t,gamma) - pow2(t0,gamma)))/T_star;
+ T_star = sum(pow2(t,gamma) - pow2(t0,gamma));
+ t_hat_star = (pow2(t,gamma) - pow2(t0,gamma))/T_star;
  
  alpha ~ dirichlet(rep_vector(1,N));
  
@@ -74,11 +74,11 @@ generated quantities{
  vector[N] t_hat;
  vector[N] t_hat_star;
 
- T = sum((t-t0));
+ T = sum(t-t0);
  t_hat = (t-t0)/T;
  
- T_star = sum((pow2(t,gamma) - pow2(t0,gamma)));
- t_hat_star = ((pow2(t,gamma) - pow2(t0,gamma)))/T_star;
+ T_star = sum(pow2(t,gamma) - pow2(t0,gamma));
+ t_hat_star = (pow2(t,gamma) - pow2(t0,gamma))/T_star;
 
  M_raw =  Mraw(alpha,t_hat);
  M_raw_age =  Mraw(alpha,t_hat_star);
@@ -88,6 +88,7 @@ generated quantities{
  
  Bias = Mraw(to_vector(multinomial_rng(t_hat_star,sum(r))),t_hat_star);
  M_age = M_raw_age^2 - Bias^2;
-}
-} "
-
+ }
+} 
+"
+  
