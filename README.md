@@ -192,6 +192,17 @@ df5 <- data.frame(M=M_post_S_male,Sex=rep("Male",length(M_post_S_male)),Group=re
 df6 <- data.frame(M=M_post_K_male,Sex=rep("Male",length(M_post_K_male)),Group=rep("Kipsigis",length(M_post_K_male)))
 df7 <- data.frame(M=M_post_K_female,Sex=rep("Female",length(M_post_K_female)),Group=rep("Kipsigis",length(M_post_K_female)))
 df <- rbind(df1,df2,df3,df4,df6,df7)
+
+  df$Group <- factor(df$Group)
+  df$Group <- factor(df$Group,levels(df$Group)[c(2,1,3)])
+
+ggplot(df, aes(x=M, y=Group, fill=0.5 - abs(0.5-..ecdf..))) +
+  stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE,color=NA) +
+  scale_fill_viridis(name = "Tail probability", direction = -1)+ facet_grid(.~Sex) +   theme(strip.text.x = element_text(size=14, face="bold"),
+        strip.text.y = element_text(size=14, face="bold")) + theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=14,face="bold")) +theme(legend.title=element_text(size=14),legend.text=element_text(size=12))
+
+
 ```
 
 
