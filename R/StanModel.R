@@ -70,5 +70,7 @@ generated quantities{
  Bias = Mraw(to_vector(multinomial_rng((t^gamma - t0^gamma)/sum(t^gamma - t0^gamma),sum(r))),(t^gamma - t0^gamma));
  M_age = M_raw_age^2 - Bias^2;
 }
-}
-"
+} "
+
+
+
