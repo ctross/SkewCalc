@@ -191,7 +191,7 @@ df4 <- data.frame(M=M_post_E_female,Sex=rep("Female",length(M_post_E_female)),Gr
 df5 <- data.frame(M=M_post_S_male,Sex=rep("Male",length(M_post_S_male)),Group=rep("Sukuma",length(M_post_S_male)))
 df6 <- data.frame(M=M_post_K_male,Sex=rep("Male",length(M_post_K_male)),Group=rep("Kipsigis",length(M_post_K_male)))
 df7 <- data.frame(M=M_post_K_female,Sex=rep("Female",length(M_post_K_female)),Group=rep("Kipsigis",length(M_post_K_female)))
-df <- rbind(df1,df2,df3,df4,df5,df6,df7)
+df <- rbind(df1,df2,df3,df4,df6,df7)
 ```
 
 
