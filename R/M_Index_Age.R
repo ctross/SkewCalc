@@ -13,7 +13,8 @@ M_index_age = function(r,t,t0=0) {
   if(min(t-t0) <= 0){
   return(NA)
    } else{
-  M = Mraw_index_age(r,t,t0)*sqrt(mean(r))
+    X = rmultinom(1,sum(r),t/sum(t))
+    M = Mraw_index_age(r,t,t0)^2 - Mraw_index_age(X,t,t0)^2
   return(M)
   }
 }
