@@ -33,5 +33,5 @@ StanResults <- stan(model_code=model_code, data=model_dat, thin=1, iter=Samples,
                     control=list(adapt_delta=adapt_delta, max_treedepth=max_treedepth))
 
 print(StanResults,pars=c("M_index", "Mraw_index","M_index_age", "Mraw_index_age", "gamma"))
-
+}
 }
