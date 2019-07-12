@@ -14,31 +14,27 @@
 skew_index_plot<-function(Index="M", Age=FALSE, SkewResults=StanReults, Save=FALSE){  
    
   if(Index=="M" && Age==FALSE){
-  M <- extract(StanResults, pars="M_index")$M_index
-  Point <- median(M[,1])
-  M <- M[,3]
+  M <- extract(StanResults, pars="M")$M
+  Point <- median(M)
   }
   
   if(Index=="Mraw" && Age==FALSE){
-  M <- extract(StanResults, pars="Mraw_index")$Mraw_index
-  Point <- median(M[,1])
-  M <- M[,3]
+  M <- extract(StanResults, pars="M_raw")$M_raw
+  Point <- median(M)
   }
   
   if(Index=="M" && Age==TRUE){
-  M <- extract(StanResults, pars="M_index")$M_index
-  Point <- median(M[,2])
-  M <- M[,4]
+  M <- extract(StanResults, pars="M_age")$M_age
+  Point <- median(M)
   }
   
   if(Index=="Mraw" && Age==TRUE){
-  M <- extract(StanResults, pars="Mraw_index")$Mraw_index
-  Point <- median(M[,2])
-  M <- M[,4]
+  M <- extract(StanResults, pars="M_raw_age")$M_raw_age
+  Point <- median(M)
   }
   
-  q2.5  <- quantile(M, .025) 
-  q97.5 <- quantile(M, .975)
+  q5  <- quantile(M, .05) 
+  q95 <- quantile(M, .95)
 
   medx  <- median(M)
   x.dens  <- density(M)
@@ -48,7 +44,7 @@ skew_index_plot<-function(Index="M", Age=FALSE, SkewResults=StanReults, Save=FAL
 
 p <- ggplot(data=dfx) + 
      geom_density(aes(x=M, y = ..density..), color = 'darkorange2') +
-     geom_area(data = subset(df.dens, x >= q2.5 & x <= q97.5), 
+     geom_area(data = subset(df.dens, x >= q5 & x <= q95), 
               aes(x=x,y=y), fill='darkorange2', alpha=0.6) +
     geom_vline(xintercept=Point, col="darkorange4") +
     geom_vline(xintercept=medx, color='#FFFFFF',size=2)
