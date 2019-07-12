@@ -148,11 +148,12 @@ skew_index_plot("Mraw",Age=TRUE)
 4) Finally, an analysis by sex and cultural group:
 ```{r}
 # Load library and attach data
-library(SkewCalc)  
+library(SkewCalc) 
+data(SukumaMales) 
+data(KipsigisMales) 
 data(ColombiaRS) 
 d <- ColombiaRS
 
-# Fit models
 M_index_stan(d$rs[which(d$group=="AFROCOLOMBIAN" & d$sex=="M")],d$age[which(d$group=="AFROCOLOMBIAN" & d$sex=="M")]) 
 M_post_A_male <- extract(StanResults, pars="M")$M
 M_point_A_male <- M_index(model_dat$r,model_dat$t) 
@@ -169,14 +170,22 @@ M_index_stan(d$rs[which(d$group=="EMBERA" & d$sex=="F")],d$age[which(d$group=="E
 M_post_E_female <- extract(StanResults, pars="M")$M
 M_point_E_female <- M_index(model_dat$r,model_dat$t) 
 
+M_index_stan(SukumaMales$rs,SukumaMales$age ) 
+M_post_S_male <- extract(StanResults, pars="M")$M
+M_point_S_male <- M_index(model_dat$r,model_dat$t) 
+
+M_index_stan(KipsigisMales$rs, KipsigisMales$age)
+M_post_K_male <- extract(StanResults, pars="M")$M
+M_point_K_male <- M_index(model_dat$r,model_dat$t) 
 
 # Finally, plot the posterior estimates of M by group and sex
 df1 <- data.frame(M=M_post_A_male,Sex=rep("Male",length(M_post_A_male)),Group=rep("Afrocolombian",length(M_post_A_male)))
 df2 <- data.frame(M=M_post_A_female,Sex=rep("Female",length(M_post_A_female)),Group=rep("Afrocolombian",length(M_post_A_female)))
 df3 <- data.frame(M=M_post_E_male,Sex=rep("Male",length(M_post_E_male)),Group=rep("Embera",length(M_post_E_male)))
 df4 <- data.frame(M=M_post_E_female,Sex=rep("Female",length(M_post_E_female)),Group=rep("Embera",length(M_post_E_female)))
-
-df <- rbind(df1,df2,df3,df4)
+df5 <- data.frame(M=M_post_S_male,Sex=rep("Male",length(M_post_S_male)),Group=rep("Sukuma",length(M_post_S_male)))
+df6 <- data.frame(M=M_post_K_male,Sex=rep("Male",length(M_post_K_male)),Group=rep("Kipsigis",length(M_post_K_male)))
+df <- rbind(df1,df2,df3,df4,df5,df6)
 ```
 
 
