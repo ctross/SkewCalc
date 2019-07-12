@@ -17,6 +17,17 @@ NULL
 #' @source Monique Borgerhoff Mulder
 "KipsigisMales"
 
+#' @title KipsigisFemales
+#' @description Reproductive success and age for a census of Kipsigis females.
+#' @format A data frame.
+#' \describe{
+#'   \item{\code{code}}{Personal ID code.}
+#'   \item{\code{age}}{Age at death or last census.}
+#'   \item{\code{rs}}{Reproductive success.}
+#'}
+#' @source Monique Borgerhoff Mulder
+"KipsigisFemales"
+
 #' @title SukumaMales
 #' @description Reproductive success and age for a census of Sukuma men.
 #' @format A data frame with 63 rows and 3 variables:
