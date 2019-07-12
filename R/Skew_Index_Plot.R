@@ -41,6 +41,7 @@ skew_index_plot<-function(Index="M", Age=FALSE, SkewResults=StanReults, Save=FAL
   df.dens <- data.frame(x=x.dens$x, y=x.dens$y)
   
   dfx <- as.data.frame(x=M)
+  dfP<<-dfx
 
 p <- ggplot(data=dfx) + 
      geom_density(aes(x=M, y = ..density..), color = 'darkorange2') +
