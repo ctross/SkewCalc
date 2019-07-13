@@ -148,12 +148,15 @@ skew_index_plot("Mraw",Age=TRUE)
 4) Finally, an analysis by sex and cultural group:
 ```{r}
 # Load library and attach data
+library(ggridges)
+library(viridis)
 library(SkewCalc) 
 data(SukumaMales) 
 data(KipsigisMales) 
 data(KipsigisFemales) 
 data(ColombiaRS) 
 d <- ColombiaRS
+d$age <- d$age - 13
 
 M_index_stan(d$rs[which(d$group=="AFROCOLOMBIAN" & d$sex=="M")],d$age[which(d$group=="AFROCOLOMBIAN" & d$sex=="M")]) 
 M_post_A_male <- extract(StanResults, pars="M")$M
@@ -197,9 +200,9 @@ df <- rbind(df1,df2,df3,df4,df6,df7)
   df$Group <- factor(df$Group,levels(df$Group)[c(2,1,3)])
 
 ggplot(df, aes(x=M, y=Group, fill=0.5 - abs(0.5-..ecdf..))) +
-  stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE,color=NA) +
+  stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
   scale_fill_viridis(name = "Tail probability", direction = -1)+ facet_grid(.~Sex) +   theme(strip.text.x = element_text(size=14, face="bold"),
-        strip.text.y = element_text(size=14, face="bold")) + theme(axis.text=element_text(size=12),
+        strip.text.y = element_text(size=14, face="bold")) + theme(axis.text=element_text(size=12), 
         axis.title=element_text(size=14,face="bold")) +theme(legend.title=element_text(size=14),legend.text=element_text(size=12))
 
 
