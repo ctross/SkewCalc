@@ -196,24 +196,28 @@ df6 <- data.frame(M=M_post_K_male,Sex=rep("Male",length(M_post_K_male)),Group=re
 df7 <- data.frame(M=M_post_K_female,Sex=rep("Female",length(M_post_K_female)),Group=rep("Kipsigis",length(M_post_K_female)))
 df <- rbind(df1,df2,df3,df4,df6,df7)
 
-dfb1 <- data.frame(M=M_point_A_male,Sex=rep("Male",1),Group=rep("Afrocolombian",1))
-dfb2 <- data.frame(M=M_point_A_female,Sex=rep("Female",1),Group=rep("Afrocolombian",1))
-dfb3 <- data.frame(M=M_point_E_male,Sex=rep("Male",1),Group=rep("Embera",1))
-dfb4 <- data.frame(M=M_point_E_female,Sex=rep("Female",1),Group=rep("Embera",1))
-dfb5 <- data.frame(M=M_point_S_male,Sex=rep("Male",1),Group=rep("Sukuma",1))
-dfb6 <- data.frame(M=M_point_K_male,Sex=rep("Male",1),Group=rep("Kipsigis",1))
-dfb7 <- data.frame(M=M_point_K_female,Sex=rep("Female",1),Group=rep("Kipsigis",1))
-dbf <- rbind(dfb1,dfb2,dfb3,dfb4,dfb6,dfb7)
+dfb1 <- data.frame(x0=M_point_A_male,Sex=rep("Male",1),Group=rep("Afrocolombian",1))
+dfb2 <- data.frame(x0=M_point_A_female,Sex=rep("Female",1),Group=rep("Afrocolombian",1))
+dfb3 <- data.frame(x0=M_point_E_male,Sex=rep("Male",1),Group=rep("Embera",1))
+dfb4 <- data.frame(x0=M_point_E_female,Sex=rep("Female",1),Group=rep("Embera",1))
+dfb5 <- data.frame(x0=M_point_S_male,Sex=rep("Male",1),Group=rep("Sukuma",1))
+dfb6 <- data.frame(x0=M_point_K_male,Sex=rep("Male",1),Group=rep("Kipsigis",1))
+dfb7 <- data.frame(x0=M_point_K_female,Sex=rep("Female",1),Group=rep("Kipsigis",1))
+dfb <- rbind(dfb1,dfb2,dfb3,dfb4,dfb6,dfb7)
 
   df$Group <- factor(df$Group)
   df$Group <- factor(df$Group,levels(df$Group)[c(2,1,3)])
+  
+  dfb$Group <- factor(dfb$Group)
+  dfb$Group <- factor(dfb$Group,levels(dfb$Group)[c(2,1,3)])
 
-ggplot(df, aes(x=M, y=Group, fill=0.5 - abs(0.5-..ecdf..))) +
-  stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
-  scale_fill_viridis(name = "Tail probability", direction = -1)+ facet_grid(.~Sex) +   theme(strip.text.x = element_text(size=14, face="bold"),
-        strip.text.y = element_text(size=14, face="bold")) + theme(axis.text=element_text(size=12), 
-        axis.title=element_text(size=14,face="bold")) +theme(legend.title=element_text(size=14),legend.text=element_text(size=12))+
-        geom_vline(data=dbf, aes(xintercept=dbf$M,color=Group))
+ggplot() +
+  stat_density_ridges(data=df, aes(x=M, y=Group, fill=0.5 - abs(0.5-..ecdf..)),geom = "density_ridges_gradient", calc_ecdf = TRUE) +
+  scale_fill_viridis(name = "Tail probability", direction = -1,option="magma")+ facet_grid(.~Sex) +   
+  theme(strip.text.x = element_text(size=14, face="bold"), strip.text.y = element_text(size=14, face="bold")) +
+  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold")) +
+  theme(legend.title=element_text(size=14),legend.text=element_text(size=12))+      
+  geom_segment(data=dfb, aes(x = x0, xend = x0, y = as.numeric(Group), yend = as.numeric(Group) + .9), color = "darkred")
 
 
 ```
