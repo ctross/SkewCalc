@@ -14,7 +14,7 @@
 #' Age = rpois(100, 45)
 #' M_index_stan(RS, Age)
 
-M_index_stan = function(r, t, t0=FALSE, Samples=2000, Warmup=1000, Chains=2, adapt_delta=0.9, max_treedepth=12, refresh=1) {
+M_index_stan = function(r, t, t0=FALSE, samples=2000, warmup=1000, chains=2, adapt_delta=0.9, max_treedepth=12, refresh=1) {
   if(min(t)<=0){
    return(NA)
    }else{
@@ -30,8 +30,8 @@ M_index_stan = function(r, t, t0=FALSE, Samples=2000, Warmup=1000, Chains=2, ada
     
     model_dat<<-model_dat
     
-StanResults <<- stan(model_code=model_code, data=model_dat, thin=1, iter=Samples, 
-                    warmup=Warmup, chains=Chains, refresh=refresh,
+StanResults <<- stan(model_code=model_code, data=model_dat, thin=1, iter=samples, 
+                    warmup=warmup, chains=chains, refresh=refresh,
                     control=list(adapt_delta=adapt_delta, max_treedepth=max_treedepth))
 
 print(StanResults,pars=c("M", "M_age","M_raw", "M_raw_age", "gamma"))
