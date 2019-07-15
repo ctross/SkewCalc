@@ -83,10 +83,10 @@ generated quantities{
     M_raw =  Mraw(alpha,t_hat);
     M_raw_age =  Mraw(alpha,t_hat_star);
  
-    Bias = Mraw(to_vector(multinomial_rng(t_hat,sum(r))),t_hat);
+    Bias = Mraw(to_vector(multinomial_rng(dirichlet_rng(t_hat),sum(r))),t_hat);
     M = M_raw^2 - Bias^2;
  
-    Bias = Mraw(to_vector(multinomial_rng(t_hat_star,sum(r))),t_hat_star);
+    Bias = Mraw(to_vector(multinomial_rng(dirichlet_rng(t_hat_star),sum(r))),t_hat_star);
     M_age = M_raw_age^2 - Bias^2;
  }
 } 
