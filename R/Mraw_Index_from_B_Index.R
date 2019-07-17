@@ -11,6 +11,6 @@
 #' Mraw_index_from_B_index(B, R, N)
 
 Mraw_index_from_B_index = function(B,R,N) {
-  M = sqrt(B*N + (N-1)/R)
+  M = B*N + (N-1)/R
   return(M)
 }
