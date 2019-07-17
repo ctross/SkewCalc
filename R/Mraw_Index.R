@@ -18,7 +18,7 @@ Mraw_index = function(r, t){
 	T = sum(t)
 	si = ((r / R) - (t / T))^2
 	S = sum(si)
-	Mraw = sqrt(N * S)
+	Mraw = N * S
   return(Mraw)
   }
 }
