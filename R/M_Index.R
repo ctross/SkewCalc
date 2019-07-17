@@ -12,13 +12,13 @@ M_index = function(r, t,Samples=1000){
   if(min(t) <= 0){
   return(NA)
   }else{
-    E_Mraw_sq = rep(NA,Samples)
+    E_Mraw = rep(NA,Samples)
     for(j in 1: Samples){
       R = sum(r)
       t_hat = t/sum(t)
-      E_Mraw_sq[j] <- Mraw_index(rmultinom(1,R,t_hat),t)^2
+      E_Mraw[j] <- Mraw_index(rmultinom(1,R,t_hat),t)
       }
-    M = Mraw_index(r,t)^2 - mean(E_Mraw_sq)
+    M = Mraw_index(r,t) - mean(E_Mraw)
   return(M)
   }    
 }
