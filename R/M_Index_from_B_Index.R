@@ -13,12 +13,12 @@
 #' M_index_from_B_index(B, R, N)
 
 M_index_from_B_index = function(B, R, N, t=rep(1/N,N),Samples=1000) {
-      E_Mraw_sq = rep(NA,Samples)
+      E_Mraw = rep(NA,Samples)
     for(j in 1: Samples){
       t_hat = t/sum(t)
-      E_Mraw_sq[j] <- Mraw_index(rmultinom(1,R,t_hat),t)^2
+      E_Mraw[j] <- Mraw_index(rmultinom(1,R,t_hat),t)
       }
- M = Mraw_index_from_B_index(B,R,N)^2 - mean(E_Mraw_sq)
+ M = Mraw_index_from_B_index(B,R,N) - mean(E_Mraw)
   return(M)
 }
 
