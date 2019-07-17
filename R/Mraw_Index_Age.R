@@ -20,7 +20,7 @@ Mraw_index_age = function(r, t, t0=0) {
    T = sum(tt)
    si = ((r/R)-(tt/T))^2
    S = sum(si)
-   Mraw = sqrt(N * S)
+   Mraw = N * S
    return(Mraw)
   }
 }
