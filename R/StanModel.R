@@ -14,7 +14,7 @@ functions{
    for(i in 1:N)
    s[i] = ((r[i]/R)-(t[i]/T))^2;  
  
-   Mraw = sqrt(N * sum(s)); 
+   Mraw = N * sum(s); 
    return Mraw;            
   }
 
@@ -84,10 +84,10 @@ generated quantities{
     M_raw_age =  Mraw(alpha,t_hat_star);
  
     Bias = Mraw(to_vector(multinomial_rng(t_hat,sum(r))),t_hat);
-    M = M_raw^2 - Bias^2;
+    M = M_raw - Bias;
  
     Bias = Mraw(to_vector(multinomial_rng(t_hat_star,sum(r))),t_hat_star);
-    M_age = M_raw_age^2 - Bias^2;
+    M_age = M_raw_age - Bias;
  }
 } 
 
