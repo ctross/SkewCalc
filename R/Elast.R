@@ -6,8 +6,8 @@
 #' @return MLE of the elasticity of RS on Age, using Poisson regression.
 #' @examples
 #' set.seed(1)
-#' RS = rpois(100, 5) 
 #' Age = rpois(100, 45)
+#' RS = rep(NA,100); for(i in 1:100) RS[i] = rpois(1, 5*Age^0.55) 
 #' elast(RS, Age)
 
 elast = function(r,t,t0=0){
