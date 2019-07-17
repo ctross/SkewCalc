@@ -2,7 +2,7 @@
 #'
 #' @param r A vector of RS values.
 #' @param t A vector of ages at death or last census.
-#' @param t A vector of ages at first census. Defaults to zero.
+#' @param t0 A vector of ages at first census. Defaults to zero.
 #' @return MLE of the elasticity of RS on Age, using Poisson regression.
 #' @examples
 #' set.seed(1)
