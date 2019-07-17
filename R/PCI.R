@@ -1,6 +1,14 @@
+#' PCI - Stolen from rethinking by R. McElreath
+#'
+#' @param samples A vector of data-points.
+#' @param prob A percentile interval.
+#' @return The B index.
+#' @examples
+#' set.seed(1)
+#' RS = rpois(100, 5) 
+#' PCI(RS, 0.9)
 
-
-function (samples, prob = 0.89) 
+PCI <- function (samples, prob = 0.89) 
 {
     x <- sapply(prob, function(p) {
         a <- (1 - p)/2
