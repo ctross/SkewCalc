@@ -28,3 +28,8 @@ PCI <- function (samples, prob = 0.89)
     }
     return(result)
 }
+
+concat <- function (...) 
+{
+    paste(..., collapse = "", sep = "")
+}
