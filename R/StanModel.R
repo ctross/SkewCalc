@@ -33,6 +33,12 @@ data{
  vector[N] t0;  
 }
 
+transformed data{
+ real R;
+ 
+ R = sum(r);
+}
+
 parameters{
  simplex[N] alpha;
  real<lower=0> gamma;
