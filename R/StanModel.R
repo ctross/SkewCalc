@@ -62,7 +62,7 @@ model{
 
  Concentration ~ normal(0,2.5);
  
- alpha ~ dirichlet(t_hat*N);
+ alpha ~ dirichlet(t_hat);
  
  r ~ multinomial(t_hat); 
  r ~ multinomial(t_hat_star); 
