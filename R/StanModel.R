@@ -89,8 +89,8 @@ generated quantities{
     T_star = sum(pow2(t,gamma) - pow2(t0,gamma));
     t_hat_star = (pow2(t,gamma) - pow2(t0,gamma))/T_star;
 
-    M_raw =  Mraw(multinomial_rng(alpha,R),t_hat);
-    M_raw_age =  Mraw(multinomial_rng(alpha,R),t_hat_star);
+    M_raw =  Mraw(to_vector(multinomial_rng(alpha,R)),t_hat);
+    M_raw_age =  Mraw(to_vector(multinomial_rng(alpha,R)),t_hat_star);
  
     Bias = Mraw(to_vector(multinomial_rng(t_hat,R)),t_hat);
     M = M_raw - Bias;
