@@ -14,9 +14,11 @@ M_index_age = function(r,t,t0=0,Samples=1000) {
   return(NA)
    } else{
      E_Mraw = rep(NA,Samples)
+       beta = elast(r,t,t0) 
+       tt = t^beta - t0^beta
     for(j in 1: Samples){
       R = sum(r)
-      t_hat = t/sum(t)
+      t_hat = tt/sum(tt)
       E_Mraw[j] <- Mraw_index_age(rmultinom(1,R,t_hat),t,t0)
       }
     M = Mraw_index_age(r,t,t0) - mean(E_Mraw)
