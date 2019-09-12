@@ -22,7 +22,7 @@ Time <- SukumaMales$age - 18  # Exposure time data. Age mininus minimum age of r
 
 # Fit models
 M_index_stan(RS,Time) 
-?M_index_stan # To explains the printed results
+?M_index_stan # Explains the printed results
 
 # Contrast the Stan model to the point estimates
 M_index(RS,Time) 
