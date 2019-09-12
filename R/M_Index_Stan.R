@@ -1,18 +1,25 @@
-#' M index of reproductive skew using Stan to simulate the population distribution of RS and age.
+#' M index of reproductive skew using Stan to conduct Bayesian bootstrapping
 #'
-#' @param r A vector of RS values.
+#' @param r A vector of RS values over time period of observation (i.e., between times t0 and t).
 #' @param t A vector of ages at death or last census.
 #' @param t0 A vector of ages at first census. Defaults to zero.
-#' @param Fast If TRUE then the model uses a faster model specification. If FALSE, then the model uses truncated distributions to more accuratly represent the data distribution.
-#' @return A Stan object is saved to the workspace. This will be used for plots and calculations. The M and Mraw results have 4 columns each: 
-#' @return 1) The point estimate on the sample data. 
-#' @return 2) The point estimate on the sample data, but adjusting for diminising fitness returns to age.
-#' @return 3) The posterior estimate using data simulated from the generative model. 
-#' @return 4) The posterior estimate using data simulated from the generative model, but adjusting for diminising fitness returns to age.
+#' @param samples Number of MCMC samples per chain.
+#' @param warmup Number of warmup iterations per chain.
+#' @param chains Number of chains.
+#' @param adapt_delta A tuning parameter in Stan. See "rstan" package for more details.
+#' @param max_treedepth A tuning parameter in Stan. See "rstan" package for more details.
+#' @param refresh How often to print updates on MCMC progress.
+#' @return A Stan object "StanResults" and a data object "model_dat" are saved to the workspace. These can be used for plots and calculations. Results are also printed: 
+#' @return 1) M. The posterior distribution of M, not accounting for diminishing RS returns to age. 
+#' @return 2) M_age. The posterior distribution of M, accounting for diminishing RS returns to age. 
+#' @return 3) M_raw. The posterior distribution of M_raw, not accounting for diminishing RS returns to age. 
+#' @return 4) M_raw_age. The posterior distribution of M_raw, accounting for diminishing RS returns to age. 
+#' @return 5) gamma The estimated elasticity of RS on exposure time. 
 #' @examples
 #' RS = rpois(100, 5) 
 #' Age = rpois(100, 45)
 #' M_index_stan(RS, Age)
+
 
 M_index_stan = function(r, t, t0=FALSE, samples=2000, warmup=1000, chains=2, adapt_delta=0.9, max_treedepth=12, refresh=1) {
   if(min(t)<=0){
