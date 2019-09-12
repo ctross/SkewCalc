@@ -2,33 +2,45 @@
 % Please edit documentation in R/M_Index_Stan.R
 \name{M_index_stan}
 \alias{M_index_stan}
-\title{M index of reproductive skew using Stan to simulate the population distribution of RS and age.}
+\title{M index of reproductive skew using Stan to conduct Bayesian bootstrapping}
 \usage{
-M_index_stan(r, t, t0 = FALSE, Fast = TRUE, Samples = 2000,
-  Warmup = 1000, Chains = 1, adapt_delta = 0.9, max_treedepth = 12)
+M_index_stan(r, t, t0 = FALSE, samples = 2000, warmup = 1000,
+  chains = 2, adapt_delta = 0.9, max_treedepth = 12, refresh = 1)
 }
 \arguments{
-\item{r}{A vector of RS values.}
+\item{r}{A vector of RS values over time period of observation (i.e., between times t0 and t).}
 
 \item{t}{A vector of ages at death or last census.}
 
 \item{t0}{A vector of ages at first census. Defaults to zero.}
 
-\item{Fast}{If TRUE then the model uses a faster model specification. If FALSE, then the model uses truncated distributions to more accuratly represent the data distribution.}
+\item{samples}{Number of MCMC samples per chain.}
+
+\item{warmup}{Number of warmup iterations per chain.}
+
+\item{chains}{Number of chains.}
+
+\item{adapt_delta}{A tuning parameter in Stan. See "rstan" package for more details.}
+
+\item{max_treedepth}{A tuning parameter in Stan. See "rstan" package for more details.}
+
+\item{refresh}{How often to print updates on MCMC progress.}
 }
 \value{
-A Stan object is saved to the workspace. This will be used for plots and calculations. The M and Mraw results have 4 columns each:
+A Stan object "StanResults" and a data object "model_dat" are saved to the workspace. These can be used for plots and calculations. Results are also printed:
 
-1) The point estimate on the sample data.
+1) M. The posterior distribution of M, not accounting for diminishing RS returns to age.
 
-2) The point estimate on the sample data, but adjusting for diminising fitness returns to age.
+2) M_age. The posterior distribution of M, accounting for diminishing RS returns to age.
 
-3) The posterior estimate using data simulated from the generative model.
+3) M_raw. The posterior distribution of M_raw, not accounting for diminishing RS returns to age.
 
-4) The posterior estimate using data simulated from the generative model, but adjusting for diminising fitness returns to age.
+4) M_raw_age. The posterior distribution of M_raw, accounting for diminishing RS returns to age.
+
+5) gamma The estimated elasticity of RS on exposure time.
 }
 \description{
-M index of reproductive skew using Stan to simulate the population distribution of RS and age.
+M index of reproductive skew using Stan to conduct Bayesian bootstrapping
 }
 \examples{
 RS = rpois(100, 5) 

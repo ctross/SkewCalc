@@ -4,7 +4,7 @@
 \alias{M_index_age}
 \title{M index accounting for diminishing returns to age.}
 \usage{
-M_index_age(r, t, t0 = 0)
+M_index_age(r, t, t0 = 0, Samples = 1000)
 }
 \arguments{
 \item{r}{A vector of RS values.}

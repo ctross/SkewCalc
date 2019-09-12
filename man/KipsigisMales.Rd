@@ -14,9 +14,8 @@
 Monique Borgerhoff Mulder
 }
 \usage{
-KipsigisMales
+data(KipsigisMales)
 }
 \description{
 Reproductive success and age for a census of Kipsigis men.
 }
-\keyword{datasets}

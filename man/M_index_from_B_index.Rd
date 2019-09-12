@@ -4,14 +4,18 @@
 \alias{M_index_from_B_index}
 \title{Calculate the M index from the B index and relevant data.}
 \usage{
-M_index_from_B_index(B, R, N)
+M_index_from_B_index(B, R, N, t = rep(1/N, N), Samples = 1000)
 }
 \arguments{
 \item{B}{The B index value estimated from a dataset.}
 
 \item{R}{Total number of RS events in the sample from which B was estimated.}
 
-\item{R}{Total number of individuals in the sample from which B was estimated.}
+\item{N}{Total number of individuals in the sample from which B was estimated.}
+
+\item{t}{Assumption of the exposure time vector used in the correction term.}
+
+\item{Samples}{Samples used in estimating the correction term.}
 }
 \value{
 The M index.

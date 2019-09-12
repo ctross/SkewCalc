@@ -4,7 +4,7 @@
 \alias{M_index}
 \title{M index of reproductive skew.}
 \usage{
-M_index(r, t)
+M_index(r, t, Samples = 1000)
 }
 \arguments{
 \item{r}{A vector of RS values.}
