@@ -11,7 +11,7 @@ M_index_age(r, t, t0 = 0, Samples = 1000)
 
 \item{t}{A vector of ages at death or last census.}
 
-\item{t}{A vector of ages at first census. Defaults to zero.}
+\item{t0}{A vector of ages at first census. Defaults to zero.}
 }
 \value{
 The M index accounting for diminishing returns to age.
@@ -20,6 +20,7 @@ The M index accounting for diminishing returns to age.
 M index accounting for diminishing returns to age.
 }
 \examples{
+set.seed(1)
 RS = rpois(100, 5) 
 Age = rpois(100, 45)
 M_index_age(RS, Age)
