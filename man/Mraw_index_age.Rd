@@ -11,7 +11,7 @@ Mraw_index_age(r, t, t0 = 0)
 
 \item{t}{A vector of ages at death or last census.}
 
-\item{t}{A vector of ages at first census. Defaults to zero.}
+\item{t0}{A vector of ages at first census. Defaults to zero.}
 }
 \value{
 The Mraw index accounting for diminishing returns to age.
