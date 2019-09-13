@@ -8,10 +8,10 @@
 #' set.seed(1)
 #' Age = rpois(100, 45)
 #' RS = rep(NA,100)
-#' for(i in 1:100) RS[i] = rpois(1, 5*Age^0.75) 
+#' for(i in 1:100) RS[i] = rpois(1, 5*Age[i]^0.75) 
 #' elast(RS, Age)
 
-elast = function(r,t,t0=0){
+elast <- function(r,t,t0=0){
     f = function(x){
        d = exp(x[1])*(t^exp(x[2]) - t0^exp(x[2]))
        p = rep(NA,length(r))

@@ -2,7 +2,7 @@
 #'
 #' @param B The B index value estimated from a dataset.
 #' @param R Total number of RS events in the sample from which B was estimated.
-#' @param R Total number of individuals in the sample from which B was estimated.
+#' @param N Total number of individuals in the sample from which B was estimated.
 #' @return The Mraw index.
 #' @examples
 #' B = 0.1 

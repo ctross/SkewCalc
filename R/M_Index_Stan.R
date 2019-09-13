@@ -16,6 +16,7 @@
 #' @return 4) M_raw_age. The posterior distribution of M_raw, accounting for diminishing RS returns to age. 
 #' @return 5) gamma The estimated elasticity of RS on exposure time. 
 #' @examples
+#' set.seed(1)
 #' RS = rpois(100, 5) 
 #' Age = rpois(100, 45)
 #' M_index_stan(RS, Age)

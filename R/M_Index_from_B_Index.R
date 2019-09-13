@@ -3,10 +3,11 @@
 #' @param B The B index value estimated from a dataset.
 #' @param R Total number of RS events in the sample from which B was estimated.
 #' @param N Total number of individuals in the sample from which B was estimated.
-#' @param t Assumption of the exposure time vector used in the correction term.
-#' @param Samples Samples used in estimating the correction term.
+#' @param t Assumption of the exposure time vector to be used in the correction term.
+#' @param Samples Number of samples used to estimate the expected value of the correction term.
 #' @return The M index.
 #' @examples
+#' set.seed(1)
 #' B = 0.1 
 #' R = 50
 #' N = 10

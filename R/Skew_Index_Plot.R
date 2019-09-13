@@ -1,8 +1,9 @@
-#' Simple posterior density plot for Stan results. 95 percent CI of posterior preditionsc in shaded orange, posterior median in white, and point estimate from sample in dark orange.
-#'
+#' Simple posterior density plot for Stan results.
+#' @description  95 percent CI of posterior preditions in shaded orange, posterior median in white, and point estimate from sample in dark orange.
 #' @param Index Should plot be of "M" or of "Mraw"?
-#' @param t M or Mraw should be adjusted for diminishing returns to age, TRUE or FALSE?
-#' @param Save If desired, the plot can be save. Just set Save="FigueNameDesired", and R will export the plot as "FigureNameDesired.pdf".
+#' @param Age M or Mraw should be adjusted for diminishing returns to age, TRUE or FALSE?
+#' @param SkewResults The Stan object from which the results will be plotted.
+#' @param Save If desired, the plot can be saved as a pdf. Just set Save="FigueNameDesired", and R will export the plot as "FigureNameDesired.pdf".
 
 #' @examples
 #' set.seed(1)
@@ -11,7 +12,7 @@
 #' M_index_stan(RS, Age)
 #' skew_index_plot(Index="M", Age=FALSE, Save=FALSE)
 
-skew_index_plot<-function(Index="M", Age=FALSE, SkewResults=StanReults, Save=FALSE){  
+skew_index_plot<-function(Index="M", Age=FALSE, SkewResults=StanResults, Save=FALSE){  
    
   if(Index=="M" && Age==FALSE){
   M <- extract(StanResults, pars="M")$M

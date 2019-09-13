@@ -5,6 +5,7 @@
 #' @param t A vector of ages at first census. Defaults to zero.
 #' @return The Mraw index accounting for diminishing returns to age.
 #' @examples
+#' set.seed(1)
 #' RS = rpois(100, 5) 
 #' Age = rpois(100, 45)
 #' Mraw_index_age(RS, Age)

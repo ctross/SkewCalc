@@ -2,8 +2,10 @@
 #'
 #' @param r A vector of RS values.
 #' @param t A vector of exposure times.
+#' @param Samples Number of samples used to estimate the expected value of the correction term.
 #' @return The M index.
 #' @examples
+#' set.seed(1) 
 #' RS = rpois(100, 5) 
 #' Age = rpois(100, 45)
 #' M_index(RS, Age)

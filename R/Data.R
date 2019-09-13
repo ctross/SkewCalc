@@ -1,6 +1,6 @@
-#' SkewCalc: Estimate reproductive skew
+#' SkewCalc: Estimate reproductive skew using Multinomial Index
 #'
-#' Documentatiion here is bare-bones, but will be updated as needed.
+#' Documentation here is bare-bones, but will be updated as needed.
 #'
 #' @name SkewCalc
 #' @docType package
@@ -25,7 +25,7 @@ NULL
 #' @docType data
 #' @usage data(KipsigisFemales)
 #' @description Reproductive success and age for a census of Kipsigis females.
-#' @format A data frame.
+#' @format A data frame with 1239 rows and 3 variables:
 #' \describe{
 #'   \item{\code{code}}{Personal ID code.}
 #'   \item{\code{age}}{Age at death or last census.}
@@ -63,3 +63,4 @@ NULL
 #'}
 #' @source Cody T. Ross
 NULL
+
