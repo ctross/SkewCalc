@@ -4,7 +4,7 @@
 \name{KipsigisFemales}
 \alias{KipsigisFemales}
 \title{KipsigisFemales}
-\format{A data frame.
+\format{A data frame with 1239 rows and 3 variables:
 \describe{
   \item{\code{code}}{Personal ID code.}
   \item{\code{age}}{Age at death or last census.}

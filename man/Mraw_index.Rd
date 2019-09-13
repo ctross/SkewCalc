@@ -18,6 +18,7 @@ The Mraw index.
 Mraw index of reproductive skew.
 }
 \examples{
+set.seed(1) 
 RS = rpois(100, 5) 
 Age = rpois(100, 45)
 Mraw_index(RS, Age)

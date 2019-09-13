@@ -2,20 +2,22 @@
 % Please edit documentation in R/Skew_Index_Plot.R
 \name{skew_index_plot}
 \alias{skew_index_plot}
-\title{Simple posterior density plot for Stan results. 95 percent CI of posterior preditionsc in shaded orange, posterior median in white, and point estimate from sample in dark orange.}
+\title{Simple posterior density plot for Stan results.}
 \usage{
-skew_index_plot(Index = "M", Age = FALSE, SkewResults = StanReults,
+skew_index_plot(Index = "M", Age = FALSE, SkewResults = StanResults,
   Save = FALSE)
 }
 \arguments{
 \item{Index}{Should plot be of "M" or of "Mraw"?}
 
-\item{Save}{If desired, the plot can be save. Just set Save="FigueNameDesired", and R will export the plot as "FigureNameDesired.pdf".}
+\item{Age}{M or Mraw should be adjusted for diminishing returns to age, TRUE or FALSE?}
 
-\item{t}{M or Mraw should be adjusted for diminishing returns to age, TRUE or FALSE?}
+\item{SkewResults}{The Stan object from which the results will be plotted.}
+
+\item{Save}{If desired, the plot can be saved as a pdf. Just set Save="FigueNameDesired", and R will export the plot as "FigureNameDesired.pdf".}
 }
 \description{
-Simple posterior density plot for Stan results. 95 percent CI of posterior preditionsc in shaded orange, posterior median in white, and point estimate from sample in dark orange.
+95 percent CI of posterior preditions in shaded orange, posterior median in white, and point estimate from sample in dark orange.
 }
 \examples{
 set.seed(1)

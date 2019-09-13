@@ -10,6 +10,8 @@ M_index(r, t, Samples = 1000)
 \item{r}{A vector of RS values.}
 
 \item{t}{A vector of exposure times.}
+
+\item{Samples}{Number of samples used to estimate the expected value of the correction term.}
 }
 \value{
 The M index.
@@ -18,6 +20,7 @@ The M index.
 M index of reproductive skew.
 }
 \examples{
+set.seed(1) 
 RS = rpois(100, 5) 
 Age = rpois(100, 45)
 M_index(RS, Age)

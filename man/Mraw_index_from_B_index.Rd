@@ -11,7 +11,7 @@ Mraw_index_from_B_index(B, R, N)
 
 \item{R}{Total number of RS events in the sample from which B was estimated.}
 
-\item{R}{Total number of individuals in the sample from which B was estimated.}
+\item{N}{Total number of individuals in the sample from which B was estimated.}
 }
 \value{
 The Mraw index.

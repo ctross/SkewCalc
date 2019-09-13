@@ -4,7 +4,7 @@
 \name{SkewCalc}
 \alias{SkewCalc}
 \alias{SkewCalc-package}
-\title{SkewCalc: Estimate reproductive skew}
+\title{SkewCalc: Estimate reproductive skew using Multinomial Index}
 \description{
-Documentatiion here is bare-bones, but will be updated as needed.
+Documentation here is bare-bones, but will be updated as needed.
 }

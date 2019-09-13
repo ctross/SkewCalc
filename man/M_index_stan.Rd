@@ -43,6 +43,7 @@ A Stan object "StanResults" and a data object "model_dat" are saved to the works
 M index of reproductive skew using Stan to conduct Bayesian bootstrapping
 }
 \examples{
+set.seed(1)
 RS = rpois(100, 5) 
 Age = rpois(100, 45)
 M_index_stan(RS, Age)

@@ -13,9 +13,9 @@ M_index_from_B_index(B, R, N, t = rep(1/N, N), Samples = 1000)
 
 \item{N}{Total number of individuals in the sample from which B was estimated.}
 
-\item{t}{Assumption of the exposure time vector used in the correction term.}
+\item{t}{Assumption of the exposure time vector to be used in the correction term.}
 
-\item{Samples}{Samples used in estimating the correction term.}
+\item{Samples}{Number of samples used to estimate the expected value of the correction term.}
 }
 \value{
 The M index.
@@ -24,6 +24,7 @@ The M index.
 Calculate the M index from the B index and relevant data.
 }
 \examples{
+set.seed(1)
 B = 0.1 
 R = 50
 N = 10
