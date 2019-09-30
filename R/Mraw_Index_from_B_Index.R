@@ -14,3 +14,8 @@ Mraw_index_from_B_index = function(B,R,N) {
   M = B*N + (N-1)/R
   return(M)
 }
+
+B_index_from_Mraw_index = function(Mraw,R,N) {
+ B = (M - (N-1)/R )/N
+  return(B)
+}
