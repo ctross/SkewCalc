@@ -74,7 +74,7 @@ parameters{
  real<lower=0> S;
  real<lower=0> D;
  real<lower=0, upper=1> C;
- real M;
+ real Mu;
 }
 
 model{ 
@@ -95,10 +95,10 @@ model{
   S ~ exponential(1);
   D ~ exponential(1);
   C ~ beta(12, 2);
-  M ~ normal(0, 1);
+  Mu ~ normal(0, 1);
  
   theta_raw ~ normal(0,1);
-  theta = inv_logit(M + GP(A, C, D, S)*theta_raw);
+  theta = inv_logit(Mu + GP(A, C, D, S)*theta_raw);
   
  for(i in 1:N){
   t_eff[i] = 0;
