@@ -89,7 +89,7 @@ model{
   M ~ normal(0, 1);
  
   theta_raw ~ normal(0,1);
-  theta = logistic(M + GP(A, C, D, S)*theta_raw);
+  theta = inv_logit(M + GP(A, C, D, S)*theta_raw);
   
  for(i in 1:N){
   t_hat_star[i] = 0;
