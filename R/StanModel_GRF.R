@@ -1,4 +1,4 @@
-model_code <-'
+model_code_grf <-'
 functions{
  real Mraw(vector r, vector t){
    int N = rows(r);
