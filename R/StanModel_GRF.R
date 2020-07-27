@@ -49,8 +49,8 @@ data{
  int N;
  int A;
  int r[N];
- vector[N] t; 
- vector[N] t0;  
+ int t[N]; 
+ int t0[N];  
 }
 
 transformed data{
@@ -74,7 +74,7 @@ model{
  real T;
  real T_star;
 
- vector[N] t0p1;
+ int t0p1[N];
  vector[N] t_eff;
  vector[N] t_hat;
  vector[N] t_hat_star;
@@ -123,13 +123,15 @@ generated quantities{
     real T;
     real T_star;
  
+    int t0p1[N];
     vector[N] t_eff;
     vector[N] t_hat;
     vector[N] t_hat_star;
 
     for(i in 1:N){
      t_hat_star[i] = 0;
-     for(a in (t0[i]+1):t[i]){
+     t0p1[i] = t0[i] + 1;
+     for(a in t0p1[i]:t[i]){
      t_eff[i] += inv_logit(theta[a]);
       }}
  
