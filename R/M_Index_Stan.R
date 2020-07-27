@@ -45,12 +45,14 @@ M_index_stan = function(r, t, t0=FALSE, samples=2000, warmup=1000, chains=2, ada
     StanResults <<- stan(model_code=model_code, data=model_dat, thin=1, iter=samples, 
                     warmup=warmup, chains=chains, refresh=refresh,
                     control=list(adapt_delta=adapt_delta, max_treedepth=max_treedepth))
+      print(StanResults,pars=c("M", "M_age","M_raw", "M_raw_age", "gamma"))
         }
     if(agemode=="gaussianprocess"){
     StanResults <<- stan(model_code=model_code_grf, data=model_dat, thin=1, iter=samples, 
                     warmup=warmup, chains=chains, refresh=refresh,
                     control=list(adapt_delta=adapt_delta, max_treedepth=max_treedepth))
+      print(StanResults,pars=c("M", "M_age","M_raw", "M_raw_age"))
          }
-print(StanResults,pars=c("M", "M_age","M_raw", "M_raw_age", "gamma"))
+
 }
 }
