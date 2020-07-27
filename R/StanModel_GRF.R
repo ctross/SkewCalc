@@ -96,7 +96,7 @@ model{
   Mu ~ normal(0, 1);
  
   theta_raw ~ normal(0,1);
-  theta = inv_logit(Mu + GP(A, C, D, S)*theta_raw);
+  theta = Mu + GP(A, C, D, S)*theta_raw;
   
  for(i in 1:N){
   t_eff[i] = 0;
@@ -123,19 +123,22 @@ generated quantities{
  real M;
  real M_raw_age;
  real M_age;
+ vector[A] theta_normalized;
+
+ theta_normalized = inv_logit(Mu + GP(A, C, D, S)*theta_raw);
  
   { 
     real Bias;
     real T;
     real T_star;
+    vector[A] theta;
  
     int t0p1[N];
     vector[N] t_eff;
     vector[N] t_hat;
     vector[N] t_hat_star;
-    vector[A] theta;
 
-    theta = inv_logit(Mu + GP(A, C, D, S)*theta_raw);
+    theta = Mu + GP(A, C, D, S)*theta_raw;
 
     for(i in 1:N){
      t_eff[i] = 0;
