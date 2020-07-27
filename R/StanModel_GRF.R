@@ -55,7 +55,14 @@ data{
 
 transformed data{
  int R;
+ vector[N] t_real; 
+ vector[N] t0_real;  
  
+ for( i in 1:N){
+ t_real[i] = t[i];
+ t0_real[i] = t0[i];
+ }
+
  R = sum(r);
 }
 
@@ -75,6 +82,7 @@ model{
  real T_star;
 
  int t0p1[N];
+
  vector[N] t_eff;
  vector[N] t_hat;
  vector[N] t_hat_star;
@@ -93,14 +101,14 @@ model{
   theta = inv_logit(M + GP(A, C, D, S)*theta_raw);
   
  for(i in 1:N){
-  t_hat_star[i] = 0;
+  t_eff[i] = 0;
   t0p1[i] = t0[i] + 1;
    for(a in t0p1[i]:t[i]){
     t_eff[i] += inv_logit(theta[a]);
     }}
  
- T = sum(t-t0);
- t_hat = (t-t0)/T;
+ T = sum(t_real-t0_real);
+ t_hat = (t_real-t0_real)/T;
  
  T_star = sum(t_eff);
  t_hat_star = (t_eff)/T_star;
@@ -129,14 +137,14 @@ generated quantities{
     vector[N] t_hat_star;
 
     for(i in 1:N){
-     t_hat_star[i] = 0;
+     t_eff[i] = 0;
      t0p1[i] = t0[i] + 1;
      for(a in t0p1[i]:t[i]){
      t_eff[i] += inv_logit(theta[a]);
       }}
  
-    T = sum(t-t0);
-    t_hat = (t-t0)/T;
+    T = sum(t_real-t0_real);
+    t_hat = (t_real-t0_real)/T;
  
     T_star = sum(t_eff);
     t_hat_star = (t_eff)/T_star;
