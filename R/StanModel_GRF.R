@@ -135,6 +135,9 @@ generated quantities{
     vector[N] t_eff;
     vector[N] t_hat;
     vector[N] t_hat_star;
+    vector[A] theta;
+
+    theta = inv_logit(Mu + GP(A, C, D, S)*theta_raw);
 
     for(i in 1:N){
      t_eff[i] = 0;
