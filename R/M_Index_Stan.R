@@ -9,6 +9,7 @@
 #' @param adapt_delta A tuning parameter in Stan. See "rstan" package for more details.
 #' @param max_treedepth A tuning parameter in Stan. See "rstan" package for more details.
 #' @param refresh How often to print updates on MCMC progress.
+#' @param agemode Age control based on "elasticity" or "gaussianprocess". If Gaussian process is used, t and t0 must be integers, and max(t) not too big (e.g., < 90 or so).
 #' @return A Stan object "StanResults" and a data object "model_dat" are saved to the workspace. These can be used for plots and calculations. Results are also printed: 
 #' @return 1) M. The posterior distribution of M, not accounting for diminishing RS returns to age. 
 #' @return 2) M_age. The posterior distribution of M, accounting for diminishing RS returns to age. 
@@ -22,26 +23,34 @@
 #' M_index_stan(RS, Age)
 
 
-M_index_stan = function(r, t, t0=FALSE, samples=2000, warmup=1000, chains=2, adapt_delta=0.9, max_treedepth=12, refresh=1) {
+M_index_stan = function(r, t, t0=FALSE, samples=2000, warmup=1000, chains=2, adapt_delta=0.9, max_treedepth=12, refresh=1, agemode="elasticity") {
   if(min(t)<=0){
    return(NA)
    }else{
    if(length(t0)==1)
    t0 = rep(0,length(r))
+    
+   A = max(t)
 
    model_dat<-list(
     N=length(r),
     r=r,
     t=t,
-    t0=t0
+    t0=t0,
+    A=A
     )
     
     model_dat<<-model_dat
-    
-StanResults <<- stan(model_code=model_code, data=model_dat, thin=1, iter=samples, 
+    if(agemode=="elasticity"){
+    StanResults <<- stan(model_code=model_code, data=model_dat, thin=1, iter=samples, 
                     warmup=warmup, chains=chains, refresh=refresh,
                     control=list(adapt_delta=adapt_delta, max_treedepth=max_treedepth))
-
+        }
+    if(agemode=="gaussianprocess"){
+    StanResults <<- stan(model_code=model_code_grf, data=model_dat, thin=1, iter=samples, 
+                    warmup=warmup, chains=chains, refresh=refresh,
+                    control=list(adapt_delta=adapt_delta, max_treedepth=max_treedepth))
+         }
 print(StanResults,pars=c("M", "M_age","M_raw", "M_raw_age", "gamma"))
 }
 }
