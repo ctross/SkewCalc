@@ -24,6 +24,25 @@ functions{
    z[i] = x[i]^y;
    return(z);
   }
+
+ //### Cholesky Factor of Covariance Matrix from a Gaussian Process 
+  matrix GP(int K, real C, real D, real S){
+   matrix[K,K] Rho;                       
+   real KR;                               
+   KR = K;                             
+
+   for(i in 1:(K-1)){
+   for(j in (i+1):K){  
+    Rho[i,j] = C * exp(-D * ( (j-i)^2 / KR^2) );           
+    Rho[j,i] = Rho[i,j];                       
+    }}
+
+   for (i in 1:K){
+    Rho[i,i] = 1;                               
+    }
+
+   return S*cholesky_decompose(Rho);
+   }
 }
 
 data{
@@ -44,7 +63,11 @@ parameters{
  simplex[N] alpha;
  real<lower=0> gamma;
  real Concentration;
- vector[A] theta;
+ vector[A] theta_raw;
+ real<lower=0> S;
+ real<lower=0> D;
+ real<lower=0, upper=1> C;
+ real M;
 }
 
 model{ 
@@ -54,14 +77,24 @@ model{
  vector[N] t_eff;
  vector[N] t_hat;
  vector[N] t_hat_star;
+ vector[A] theta;
  
  gamma ~ normal(0,1);
  Concentration ~ normal(0,2.5);
+
+ //# Priors for Gaussian Process controlers
+  S ~ exponential(1);
+  D ~ exponential(1);
+  C ~ beta(12, 2);
+  M ~ normal(0, 1);
  
+  theta_raw ~ normal(0,1);
+  theta = logistic(M + GP(A, C, D, S)*theta_raw);
+  
  for(i in 1:N){
   t_hat_star[i] = 0;
    for(a in (t0[i]+1):t[i]){
-    t_eff[i] += theta[a];
+    t_eff[i] += inv_logit(theta[a]);
     }}
  
  T = sum(t-t0);
@@ -95,7 +128,7 @@ generated quantities{
     for(i in 1:N){
      t_hat_star[i] = 0;
      for(a in (t0[i]+1):t[i]){
-     t_eff[i] += theta[a];
+     t_eff[i] += inv_logit(theta[a]);
       }}
  
     T = sum(t-t0);
