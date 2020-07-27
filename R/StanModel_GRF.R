@@ -125,10 +125,10 @@ generated quantities{
  real M_age;
  vector[A] theta_normalized;
 
- theta_normalized = inv_logit(Mu + GP(A, C, D, S)*theta_raw)/max(inv_logit(Mu + GP(A, C, D, S)*theta_raw));
+ theta_normalized = cumulative_sum( inv_logit(Mu + GP(A, C, D, S)*theta_raw ));
 
   { 
-    real Bias;
+    real Bias; 
     real T;
     real T_star;
     vector[A] theta;
