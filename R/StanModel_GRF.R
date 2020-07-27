@@ -68,7 +68,6 @@ transformed data{
 
 parameters{
  simplex[N] alpha;
- real<lower=0> gamma;
  real Concentration;
  vector[A] theta_raw;
  real<lower=0> S;
@@ -88,7 +87,6 @@ model{
  vector[N] t_hat_star;
  vector[A] theta;
  
- gamma ~ normal(0,1);
  Concentration ~ normal(0,2.5);
 
  //# Priors for Gaussian Process controlers
