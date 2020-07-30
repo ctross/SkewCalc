@@ -111,10 +111,10 @@ model{
  T_star = sum(t_eff);
  t_hat_star = (t_eff)/T_star;
  
- alpha ~ dirichlet(t_hat*exp(Concentration));
+ alpha ~ dirichlet(t_hat_star*exp(Concentration));
  
- r ~ multinomial(t_hat); 
- r ~ multinomial(t_hat_star); 
+ //r ~ multinomial(t_hat); 
+ //r ~ multinomial(t_hat_star); 
  r ~ multinomial(alpha); 
 }
 
