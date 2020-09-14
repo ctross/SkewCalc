@@ -20,7 +20,7 @@ B_index = function(r, t){
 	if(R > 0){
 	B = sum((r / R - t / T)^2) - (1 / R) * (1 - 1 / Nbar)
 	} else {
-	B = 0
+	B = NA
 	}
 	return(B)
   }
