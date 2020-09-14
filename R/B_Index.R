@@ -14,16 +14,17 @@ B_index = function(r, t){
   return(NA)
   } 
   else{                      
-  T = sum(t)
-	Nbar = T / max(t)
-	R = sum(r)
-	if(R > 0){
-	B = sum((r / R - t / T)^2) - (1 / R) * (1 - 1 / Nbar)
-	} else {
+    T = sum(t)
+    Nbar = T / max(t)
+    R = sum(r)
+   
+      if(R > 0){
+	B = sum(((r / R) - (t / T))^2) - ((1 / R) * (1 - (1 / Nbar)))
+	} 
+      else {
 	B = NA
 	}
 	return(B)
   }
 }
-
 
