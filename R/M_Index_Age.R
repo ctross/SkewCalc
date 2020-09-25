@@ -9,7 +9,7 @@
 #' Age = rpois(100, 45)
 #' M_index_age(RS, Age)
 
-M_index_age = function(r,t,t0=0,Samples=1000) {
+M_index_age = function(r,t,t0=0,Samples=100) {
   if(min(t-t0) <= 0){
   return(NA)
    } else{
