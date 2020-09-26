@@ -23,7 +23,7 @@
 #' M_index_stan(RS, Age)
 
 
-M_index_stan = function(r, t, t0=FALSE, samples=2000, warmup=1000, chains=2, adapt_delta=0.9, max_treedepth=12, refresh=1, agemode="elasticity") {
+M_index_stan = function(r, t, t0=FALSE, samples=2000, warmup=1000, chains=2, adapt_delta=0.9, max_treedepth=12, refresh=100, agemode="elasticity") {
   if(min(t)<=0){
    return(NA)
    }else{
