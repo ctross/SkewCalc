@@ -1,6 +1,6 @@
 model_code_grf <-'
 functions{
- real Mraw(vector r, vector t){
+ real Mraw_index(vector r, vector t){
    int N = rows(r);
 
    real R; 
@@ -153,13 +153,13 @@ generated quantities{
     T_star = sum(t_eff);
     t_hat_star = (t_eff)/T_star;
 
-    M_raw =  Mraw(to_vector(multinomial_rng(alpha,R)),t_hat);
-    M_raw_age =  Mraw(to_vector(multinomial_rng(alpha,R)),t_hat_star);
+    M_raw =  Mraw_index(to_vector(multinomial_rng(alpha,R)),t_hat);
+    M_raw_age =  Mraw_index(to_vector(multinomial_rng(alpha,R)),t_hat_star);
  
-    Bias = Mraw(to_vector(multinomial_rng(t_hat,R)),t_hat);
+    Bias = Mraw_index(to_vector(multinomial_rng(t_hat,R)),t_hat);
     M = M_raw - Bias;
  
-    Bias = Mraw(to_vector(multinomial_rng(t_hat_star,R)),t_hat_star);
+    Bias = Mraw_index(to_vector(multinomial_rng(t_hat_star,R)),t_hat_star);
     M_age = M_raw_age - Bias;
  }
 } 
