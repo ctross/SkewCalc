@@ -42,7 +42,7 @@ transformed data{
 parameters{
  simplex[N] alpha;
  real<lower=0> gamma;
- real Concentration;
+ real<lower=0> Concentration;
 }
 
 model{ 
@@ -53,7 +53,7 @@ model{
  vector[N] t_hat_star;
  
  gamma ~ normal(1,0.33);
- Concentration ~ normal(2,1.5);
+ Concentration ~ lognormal(N,N^(0.5));
  
  T = sum(t-t0);
  t_hat = (t-t0)/T;
@@ -61,7 +61,7 @@ model{
  T_star = sum(pow2(t,gamma) - pow2(t0,gamma));
  t_hat_star = (pow2(t,gamma) - pow2(t0,gamma))/T_star;
  
- alpha ~ dirichlet(t_hat_star*exp(Concentration));
+ alpha ~ dirichlet(t_hat_star*Concentration);
  
  //r ~ multinomial(t_hat); 
  //r ~ multinomial(t_hat_star); 
