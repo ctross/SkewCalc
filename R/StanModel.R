@@ -52,8 +52,8 @@ model{
  vector[N] t_hat;
  vector[N] t_hat_star;
  
- gamma ~ normal(1,0.1);
- Concentration ~ normal(10, 300);
+ gamma ~ normal(1,0.2);
+ Concentration ~ normal(10, 100);
  
  T = sum(t-t0);
  t_hat = (t-t0)/T;
