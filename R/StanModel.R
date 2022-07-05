@@ -61,7 +61,7 @@ model{
  T_star = sum(pow2(t,gamma) - pow2(t0,gamma));
  t_hat_star = (pow2(t,gamma) - pow2(t0,gamma))/T_star;
  
- alpha ~ dirichlet(t_hat_star*(N+5));
+ alpha ~ dirichlet(t_hat_star*(N+1));
  
  //r ~ multinomial(t_hat); 
  //r ~ multinomial(t_hat_star); 
