@@ -1,7 +1,9 @@
 SkewCalc
 ========
-This is an R package for calculating reproductive skew.
 
+<img align="right" src="https://github.com/ctross/STRAND/blob/main/logo3.png" alt="logo" width="140"> 
+
+Inequality or skew in reproductive success (RS) is common across many animal species and is of long-standing interest to the study of social evolution. However, the measurement of inequality in RS in natural populations has been challenging because existing quantitative measures are highly sensitive to variation in group/sample size, mean RS, and age-structure. This makes comparisons across multiple groups and/or species vulnerable to statistical artefacts and hinders empirical and theoretical progress. Here, we present a new measure of reproductive skew, the multinomial index, M, that is unaffected by many of the structural biases affecting existing indices. M is analytically related to Nonacs' binomial index, B, and comparably accounts for heterogeneity in age across individuals; in addition, M allows for the possibility of diminishing or even highly nonlinear RS returns to age. Unlike B, however, M is not biased by differences in sample/group size. 
 Install by running on R:
 ```{r}
 library(devtools)
