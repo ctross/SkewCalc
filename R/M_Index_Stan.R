@@ -33,7 +33,7 @@ M_index_stan = function(r, t, t0=FALSE, samples=2000, warmup=1000, chains=2, ada
     
    A = max(t)
    
-   if(priors == NULL){
+   if(is.null(priors)){
     priors = matrix(NA, nrow=2, ncol=2)
     priors[1,] = c(1, 0.1)
     priors[2,] = c(0, 2.5)
