@@ -4,8 +4,19 @@
 \alias{M_index_stan}
 \title{M index of reproductive skew using Stan to conduct Bayesian bootstrapping}
 \usage{
-M_index_stan(r, t, t0 = FALSE, samples = 2000, warmup = 1000,
-  chains = 2, adapt_delta = 0.9, max_treedepth = 12, refresh = 1)
+M_index_stan(
+  r,
+  t,
+  t0 = FALSE,
+  samples = 2000,
+  warmup = 1000,
+  chains = 2,
+  adapt_delta = 0.9,
+  max_treedepth = 12,
+  refresh = 100,
+  agemode = "elasticity",
+  priors = NULL
+)
 }
 \arguments{
 \item{r}{A vector of RS values over time period of observation (i.e., between times t0 and t).}
@@ -25,6 +36,10 @@ M_index_stan(r, t, t0 = FALSE, samples = 2000, warmup = 1000,
 \item{max_treedepth}{A tuning parameter in Stan. See "rstan" package for more details.}
 
 \item{refresh}{How often to print updates on MCMC progress.}
+
+\item{agemode}{Age control based on "elasticity" or "gaussianprocess". If Gaussian process is used, t and t0 must be integers, and max(t) not too big (e.g., < 90 or so).}
+
+\item{priors}{A 2 x 2 matrix. The first row gives the mean and sd of a normal distribution for the elasticity parameter, with default of mu=1.0, sd=0.1. The second row give the prior for the log concentration parameter, with a default of mu=0.0, sd=2.5.}
 }
 \value{
 A Stan object "StanResults" and a data object "model_dat" are saved to the workspace. These can be used for plots and calculations. Results are also printed:

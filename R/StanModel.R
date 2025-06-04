@@ -30,7 +30,8 @@ data{
  int N;
  int r[N];
  vector[N] t; 
- vector[N] t0;  
+ vector[N] t0;
+ matrix[2,2] priors;  
 }
 
 transformed data{
@@ -52,8 +53,8 @@ model{
  vector[N] t_hat;
  vector[N] t_hat_star;
  
- gamma ~ normal(1, 0.1);
- Concentration ~ normal(0, 2.5);
+ gamma ~ normal(priors[1,1], priors[1,2]);
+ Concentration ~ normal(priors[2,1], priors[2,2]);
  
  T = sum(t-t0);
  t_hat = (t-t0)/T;

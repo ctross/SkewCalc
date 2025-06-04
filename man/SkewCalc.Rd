@@ -2,9 +2,17 @@
 % Please edit documentation in R/Data.R
 \docType{package}
 \name{SkewCalc}
-\alias{SkewCalc}
 \alias{SkewCalc-package}
+\alias{SkewCalc}
 \title{SkewCalc: Estimate reproductive skew using Multinomial Index}
 \description{
 Documentation here is bare-bones, but will be updated as needed.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Ctross/SkewCalc}
+  \item Report bugs at \url{https://github.com/Ctross/SkewCalc}
+}
+
 }

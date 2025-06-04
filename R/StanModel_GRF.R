@@ -50,7 +50,8 @@ data{
  int A;
  int r[N];
  int t[N]; 
- int t0[N];  
+ int t0[N]; 
+ matrix[2,2] priors;   
 }
 
 transformed data{
@@ -87,7 +88,7 @@ model{
  vector[N] t_hat_star;
  vector[A] theta;
  
- Concentration ~ normal(0,2.5);
+ Concentration ~ normal(priors[2,1], priors[2,2]);
 
  //# Priors for Gaussian Process controlers
   S ~ exponential(1);

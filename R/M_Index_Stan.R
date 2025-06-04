@@ -10,6 +10,7 @@
 #' @param max_treedepth A tuning parameter in Stan. See "rstan" package for more details.
 #' @param refresh How often to print updates on MCMC progress.
 #' @param agemode Age control based on "elasticity" or "gaussianprocess". If Gaussian process is used, t and t0 must be integers, and max(t) not too big (e.g., < 90 or so).
+#' @param priors A 2 x 2 matrix. The first row gives the mean and sd of a normal distribution for the elasticity parameter, with default of mu=1.0, sd=0.1. The second row give the prior for the log concentration parameter, with a default of mu=0.0, sd=2.5.
 #' @return A Stan object "StanResults" and a data object "model_dat" are saved to the workspace. These can be used for plots and calculations. Results are also printed: 
 #' @return 1) M. The posterior distribution of M, not accounting for diminishing RS returns to age. 
 #' @return 2) M_age. The posterior distribution of M, accounting for diminishing RS returns to age. 
@@ -23,7 +24,7 @@
 #' M_index_stan(RS, Age)
 
 
-M_index_stan = function(r, t, t0=FALSE, samples=2000, warmup=1000, chains=2, adapt_delta=0.9, max_treedepth=12, refresh=100, agemode="elasticity") {
+M_index_stan = function(r, t, t0=FALSE, samples=2000, warmup=1000, chains=2, adapt_delta=0.9, max_treedepth=12, refresh=100, agemode="elasticity", priors = NULL) {
   if(min(t)<=0){
    return(NA)
    }else{
@@ -31,13 +32,20 @@ M_index_stan = function(r, t, t0=FALSE, samples=2000, warmup=1000, chains=2, ada
    t0 = rep(0,length(r))
     
    A = max(t)
+   
+   if(priors == NULL){
+    priors = matrix(NA, nrow=2, ncol=2)
+    priors[1,] = c(1, 0.1)
+    priors[2,] = c(0, 2.5)
+   }
 
    model_dat<-list(
     N=length(r),
     r=r,
     t=t,
     t0=t0,
-    A=A
+    A=A,
+    priors = priors
     )
     
     model_dat<<-model_dat

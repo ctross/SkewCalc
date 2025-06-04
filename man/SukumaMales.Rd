@@ -4,12 +4,14 @@
 \name{SukumaMales}
 \alias{SukumaMales}
 \title{SukumaMales}
-\format{A data frame with 63 rows and 3 variables:
+\format{
+A data frame with 63 rows and 3 variables:
 \describe{
   \item{\code{code}}{Personal ID code.}
   \item{\code{age}}{Age at death or last census.}
   \item{\code{rs}}{Reproductive success.}
-}}
+}
+}
 \source{
 Monique Borgerhoff Mulder
 }

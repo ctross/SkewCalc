@@ -4,14 +4,16 @@
 \name{ColombiaRS}
 \alias{ColombiaRS}
 \title{ColombiaRS}
-\format{A data frame with 289 rows and 5 variables:
+\format{
+A data frame with 289 rows and 5 variables:
 \describe{
   \item{\code{code}}{Personal ID code.}
   \item{\code{age}}{Age at death or last census.}
   \item{\code{rs}}{Reproductive success. Children born.}
   \item{\code{sex}}{Sex.}
   \item{\code{group}}{Afrocolombian or Embera.}
-}}
+}
+}
 \source{
 Cody T. Ross
 }

@@ -4,8 +4,12 @@
 \alias{skew_index_plot}
 \title{Simple posterior density plot for Stan results.}
 \usage{
-skew_index_plot(Index = "M", Age = FALSE, SkewResults = StanResults,
-  Save = FALSE)
+skew_index_plot(
+  Index = "M",
+  Age = FALSE,
+  SkewResults = StanResults,
+  Save = FALSE
+)
 }
 \arguments{
 \item{Index}{Should plot be of "M" or of "Mraw"?}
